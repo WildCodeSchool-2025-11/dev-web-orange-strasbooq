@@ -1,3 +1,4 @@
+import Header from "../components/header";
 import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
@@ -6,6 +7,7 @@ import { Link as RouterLink } from "react-router-dom";
 export default function About() {
 	return (
 		<Box sx={{ my: 4 }}>
+			<Header />
 			<Typography variant="h4" component="h1" gutterBottom>
 				À propos
 			</Typography>
