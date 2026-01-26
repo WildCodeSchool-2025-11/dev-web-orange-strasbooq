@@ -4,7 +4,7 @@ import background from "../assets/background.png";
 function HeroSection() {
 	return (
 		<section
-			className="relative h-[60vh] w-full bg-cover bg-center flex items-center justify-center opacity-90"
+			className="relative h-[50vh] w-full bg-cover bg-center flex items-center justify-center opacity-90"
 			style={{ backgroundImage: `url(${background})` }}
 		>
 			<div className="text-center">
