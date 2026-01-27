@@ -25,11 +25,13 @@ function MinimalReservationDate() {
 		return reservationDate;
 	}
 }
+
 const isDateDisabled = ({ date, view }: { date: Date; view: string }) => {
 	if (view === "month") {
+		const weekendDays = [0, 6];
 		const minThresholdTimestamp = MinimalReservationDate();
 		const thresholdDate = new Date(minThresholdTimestamp);
-		return date < thresholdDate;
+		return weekendDays.includes(date.getDay()) || date < thresholdDate;
 	}
 	return false;
 };
