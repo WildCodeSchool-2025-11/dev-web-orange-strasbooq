@@ -5,7 +5,7 @@ function HomePage() {
 	return (
 		<div>
 			<HeroSection />
-			<section className="bg-[#FFC7CF] min-h-screen">
+			<section className="bg-[#FFC7CF] py-12">
 				<BouquetSection />
 			</section>
 		</div>
