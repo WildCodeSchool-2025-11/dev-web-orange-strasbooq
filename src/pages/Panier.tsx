@@ -5,6 +5,35 @@ import "react-calendar/dist/Calendar.css";
 type ValuePiece = Date | null;
 type Value = ValuePiece | [ValuePiece, ValuePiece];
 
+function MinimalReservationDate() {
+    const today = new Date();
+    const reservationDate = new Date();
+
+    if (today.getDay() === 4) {
+        reservationDate.setDate(today.getDate() + 4);
+        return reservationDate;
+    }
+    if (today.getDay() === 5) {
+        reservationDate.setDate(today.getDate() + 4);
+        return reservationDate;
+    }
+    if (today.getDay() === 6) {
+        reservationDate.setDate(today.getDate() + 3);
+        return reservationDate;
+    }
+    else {
+        reservationDate.setDate(today.getDate() + 2);
+        return reservationDate;
+    }
+};
+const isDateDisabled = ({ date, view }: { date: Date; view: string }) => {
+  if (view === "month") {
+    const minThresholdTimestamp = MinimalReservationDate();
+        const thresholdDate = new Date(minThresholdTimestamp);
+    return date < thresholdDate;
+  }
+  return false;
+};
 export default function Panier() {
     const [selectedDate, setSelectedDate] = useState<Value>(new Date());
 
@@ -53,6 +82,8 @@ export default function Panier() {
                         </p>
                         <div className="flex justify-center bg-white p-4 rounded-xl shadow-sm border">
                             <Calendar
+                                minDate={MinimalReservationDate()}
+                                tileDisabled={isDateDisabled}
                                 onChange={setSelectedDate}
                                 value={selectedDate}
                                 className="border-none"
