@@ -4,11 +4,11 @@ import background from "../assets/background.png";
 function HeroSection() {
 	return (
 		<section
-			className="relative h-[50vh] w-full bg-cover bg-center flex items-center justify-center opacity-90"
+			className="relative h-[50vh] w-full bg-cover bg-center flex items-center justify-center opacity-90 shadow-xl"
 			style={{ backgroundImage: `url(${background})` }}
 		>
 			<div className="text-center">
-				<h1 className="text-5xl mb-6">
+				<h1 className="text-5xl mb-6 satisfy-regular">
 					Bienvenue chez
 					<br />
 					Strasfleurs
