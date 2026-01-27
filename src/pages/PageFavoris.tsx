@@ -7,7 +7,6 @@ interface Bouquet {
 	description: string;
 	prix: number;
 	image_url: string;
-	disponibilite: boolean;
 }
 
 function PageFavoris() {
