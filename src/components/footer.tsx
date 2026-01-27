@@ -3,7 +3,7 @@ import { Link as RouterLink } from "react-router-dom";
 export default function Footer() {
 	return (
 		<footer
-			className="h-[167px] absolute bottom-0 left-0 right-0 flex items-center"
+			className="h-[167px] absolute fixed bottom-0 left-0 right-0 flex items-center"
 			style={{ backgroundColor: "#185227" }}
 		>
 			<nav className="m-auto pr-[20px] flex gap-4">
