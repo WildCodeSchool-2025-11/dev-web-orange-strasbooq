@@ -3,9 +3,7 @@ import Container from "@mui/material/Container";
 import Link from "@mui/material/Link";
 import Stack from "@mui/material/Stack";
 import Typography from "@mui/material/Typography";
-import { Route, Link as RouterLink, Routes } from "react-router-dom";
-import About from "./pages/About";
-import Home from "./pages/Home";
+import { Link as RouterLink } from "react-router-dom";
 
 function Copyright() {
 	return (
@@ -44,13 +42,6 @@ export default function App() {
 					</Link>
 				</Stack>
 			</Box>
-
-			{/* Configuration des Routes */}
-			<Routes>
-				<Route path="/" element={<Home />} />
-				<Route path="/about" element={<About />} />
-			</Routes>
-
 			<Box sx={{ my: 4 }}>
 				<Copyright />
 			</Box>
