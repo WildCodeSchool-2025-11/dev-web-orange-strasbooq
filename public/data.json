@@ -1,0 +1,122 @@
+[
+	{
+		"id": "amaryllis",
+		"nom": "Amaryllis",
+		"description": "Fleur majestueuse et élégante",
+		"prix": 5,
+		"image": "/fleurs/amaryllis.jpg",
+		"categorie": "fleur"
+	},
+	{
+		"id": "gerbera",
+		"nom": "Gerbera",
+		"description": "Fleur colorée et joyeuse",
+		"prix": 3.5,
+		"image": "/fleurs/gerbera.jpg",
+		"categorie": "fleur"
+	},
+	{
+		"id": "pivoine",
+		"nom": "Pivoine",
+		"description": "Fleur opulente et raffinée",
+		"prix": 3.5,
+		"image": "/fleurs/pivoine.jpg",
+		"categorie": "fleur"
+	},
+	{
+		"id": "rose",
+		"nom": "Rose",
+		"description": "Fleur classique et romantique",
+		"prix": 4,
+		"image": "/fleurs/rose.jpg",
+		"categorie": "fleur"
+	},
+	{
+		"id": "tulipe",
+		"nom": "Tulipe",
+		"description": "Fleur gracieuse et épurée",
+		"prix": 3.5,
+		"image": "/fleurs/tulipe.jpg",
+		"categorie": "fleur"
+	},
+	{
+		"id": "eucalyptus",
+		"nom": "Eucalyptus",
+		"description": "Feuillage raffiné et parfumé",
+		"prix": 2,
+		"image": "/feuillages/eucalyptus.jpg",
+		"categorie": "feuillage"
+	},
+	{
+		"id": "ruscus",
+		"nom": "Ruscus",
+		"description": "Feuillage persistant élégant",
+		"prix": 2,
+		"image": "/feuillages/ruscus.jpg",
+		"categorie": "feuillage"
+	},
+	{
+		"id": "mahonia",
+		"nom": "Mahonia",
+		"description": "Feuillage texturé et profond",
+		"prix": 2,
+		"image": "/feuillages/mahonia.jpg",
+		"categorie": "feuillage"
+	},
+	{
+		"id": "fougere",
+		"nom": "Fougère",
+		"description": "Feuillage léger et naturel",
+		"prix": 2,
+		"image": "/feuillages/fougere.jpg",
+		"categorie": "feuillage"
+	},
+	{
+		"id": "flexgrass",
+		"nom": "Flexgrass",
+		"description": "Feuillage souple et aérien",
+		"prix": 2,
+		"image": "/feuillages/flexgrass.jpg",
+		"categorie": "feuillage"
+	},
+	{
+		"id": "lavande",
+		"nom": "Lavande",
+		"description": "Parfum floral apaisant",
+		"prix": 2,
+		"image": "/herbes/lavande.jpg",
+		"categorie": "herbe"
+	},
+	{
+		"id": "romarin",
+		"nom": "Romarin",
+		"description": "Parfum boisé et intense",
+		"prix": 2,
+		"image": "/herbes/romarin.jpg",
+		"categorie": "herbe"
+	},
+	{
+		"id": "thym",
+		"nom": "Thym",
+		"description": "Parfum puissant et chaleureux",
+		"prix": 2,
+		"image": "/herbes/thym.jpg",
+		"categorie": "herbe"
+	},
+	{
+		"id": "fenouil",
+		"nom": "Fenouil",
+		"description": "Parfum anisé et frais",
+		"prix": 2,
+		"image": "/herbes/fenouil.jpg",
+		"categorie": "herbe"
+	},
+	{
+		"id": "sauge",
+		"nom": "Sauge",
+		"description": "Parfum aromatique et doux",
+		"prix": 2,
+		"image": "/herbes/sauge.jpg",
+		"categorie": "herbe"
+	}
+]
