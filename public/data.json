@@ -44,15 +44,15 @@
 		"nom": "Eucalyptus",
 		"description": "Feuillage raffiné et parfumé",
 		"prix": 2,
-		"image": "/feuillages/eucalyptus.jpg",
+		"image": "/feuillages/eucalyptus.png",
 		"categorie": "feuillage"
 	},
 	{
 		"id": "ruscus",
 		"nom": "Ruscus",
-		"description": "Feuillage persistant élégant",
+		"description": "Feuillage persistant et élégant",
 		"prix": 2,
-		"image": "/feuillages/ruscus.jpg",
+		"image": "/feuillages/ruscus.png",
 		"categorie": "feuillage"
 	},
 	{
@@ -60,7 +60,7 @@
 		"nom": "Mahonia",
 		"description": "Feuillage texturé et profond",
 		"prix": 2,
-		"image": "/feuillages/mahonia.jpg",
+		"image": "/feuillages/mahonia.png",
 		"categorie": "feuillage"
 	},
 	{
@@ -68,7 +68,7 @@
 		"nom": "Fougère",
 		"description": "Feuillage léger et naturel",
 		"prix": 2,
-		"image": "/feuillages/fougere.jpg",
+		"image": "/feuillages/fougere.png",
 		"categorie": "feuillage"
 	},
 	{
@@ -76,7 +76,7 @@
 		"nom": "Flexgrass",
 		"description": "Feuillage souple et aérien",
 		"prix": 2,
-		"image": "/feuillages/flexgrass.jpg",
+		"image": "/feuillages/flexgrass.png",
 		"categorie": "feuillage"
 	},
 	{
@@ -84,7 +84,7 @@
 		"nom": "Lavande",
 		"description": "Parfum floral apaisant",
 		"prix": 2,
-		"image": "/herbes/lavande.jpg",
+		"image": "/herbes/lavande.png",
 		"categorie": "herbe"
 	},
 	{
@@ -92,7 +92,7 @@
 		"nom": "Romarin",
 		"description": "Parfum boisé et intense",
 		"prix": 2,
-		"image": "/herbes/romarin.jpg",
+		"image": "/herbes/romarin.png",
 		"categorie": "herbe"
 	},
 	{
