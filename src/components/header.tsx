@@ -8,7 +8,7 @@ export default function Header() {
 			style={{ backgroundColor: "rgba(158, 42, 43, 0.6)" }}
 		>
 			<nav className="ml-auto pr-[20px] flex gap-4">
-				<RouterLink to="/Accueil" className="HomePage">
+				<RouterLink to="/" className="HomePage">
 					<img
 						src="src/assets/logo.png"
 						alt="Logo"
@@ -16,10 +16,10 @@ export default function Header() {
 						style={{ filter: "drop-shadow(2px 5px 4px rgba(0, 0, 0, 0.3))" }}
 					/>
 				</RouterLink>
-				<RouterLink to="/ChoisirBouquet" className="ChoisirBouquet">
+				<RouterLink to="/choisir-bouquet" className="ChoisirBouquet">
 					Choisir un bouquet
 				</RouterLink>
-				<RouterLink to="/CreerBouquet" className="CreerBouquet">
+				<RouterLink to="/choisir-fleurs" className="CreerBouquet">
 					Créer un bouquet
 				</RouterLink>
 				<RouterLink to="/Panier" className="Panier">
