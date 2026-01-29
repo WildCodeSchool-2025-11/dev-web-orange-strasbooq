@@ -1,7 +1,11 @@
-// header.tsx
+// import { useState } from "react";
 import { Link as RouterLink } from "react-router-dom";
+// import Coeuricon from "../assets/Favoris.svg";
+// import PanierIcon from "../assets/Panier.svg";
 
 export default function Header() {
+	// const [isMenuOpen, setIsMenuOpen] = useState(false);
+
 	return (
 		<header
 			className="h-[100px] relative flex items-center"
