@@ -22,8 +22,12 @@ export default function Header() {
 				<RouterLink to="/choisir-fleurs" className="CreerBouquet">
 					Créer un bouquet
 				</RouterLink>
-				<RouterLink to="/Panier" className="Panier">
-					<img src="src/assets/Panier.png" alt="Panier" className="h-[30px]" />
+				<RouterLink to="/MonPanier" className="MonPanier">
+					<img
+						src="src/assets/Panier.png"
+						alt="MonPanier"
+						className="h-[30px]"
+					/>
 				</RouterLink>
 				<RouterLink to="/Favoris" className="Favoris">
 					<img
