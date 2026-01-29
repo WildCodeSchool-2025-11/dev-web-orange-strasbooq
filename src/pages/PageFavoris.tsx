@@ -50,6 +50,12 @@ function PageFavoris() {
 		localStorage.setItem("favorites", JSON.stringify(updateFavorites));
 	};
 
+	// retirer tous les favoris
+	const removeAllFavorites = () => {
+		setFavorites([]);
+		localStorage.removeItem("favorites");
+	};
+
 	//filter favorites
 	const favoritesBouquet = bouquets.filter((bouquet) =>
 		favorites.some((fav) => fav.id === bouquet.id),
@@ -61,12 +67,25 @@ function PageFavoris() {
 		return <div>Erreur: {error}</div>;
 	}
 	if (favoritesBouquet.length === 0) {
-		return <div>Vous n'avez pas de bouquets favoris pour le moment.</div>;
+		return (
+			<div className="text-center p-5">
+				Vous n'avez pas de bouquets favoris pour le moment.
+			</div>
+		);
 	}
 
 	return (
 		<div className="container mx-auto px-4 py-8">
-			<h1 className="text-3xl font-bold mb-6">Mes Bouquets Favoris</h1>
+			<h1 className="text-3xl text-center py-5 font-bold mb-6">
+				Mes Bouquets Favoris
+			</h1>
+			<button
+				type="button"
+				onClick={() => removeAllFavorites()}
+				className="bg-red-500 hover:bg-red-600 text-white rounded py-2 px-4 mb-4 transition-colors cursor-pointer"
+			>
+				Retirer tous les bouquets
+			</button>
 			<div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
 				{favoritesBouquet.map((bouquet) => (
 					<div key={bouquet.id} className="bg-gray-50 ">
