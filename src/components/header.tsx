@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Link as RouterLink } from "react-router-dom";
-import Coeuricon from "../assets/Favoris.svg";
-import PanierIcon from "../assets/Panier.svg";
+// import Coeuricon from "../assets/Favoris.svg";
+// import PanierIcon from "../assets/Panier.svg";
 
 export default function Header() {
 	const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -43,14 +43,14 @@ export default function Header() {
 								to="/Panier"
 								className="p-2 rounded-full hover:bg-rose-400 transition-colors duration-300"
 							>
-								<img src={PanierIcon} alt="Panier" className="h-7 w-7" />
+								{/* <img src={PanierIcon} alt="Panier" className="h-7 w-7" /> */}
 							</RouterLink>
 
 							<RouterLink
 								to="/Favoris"
 								className="p-2 rounded-full hover:bg-rose-400 transition-colors duration-300"
 							>
-								<img src={Coeuricon} alt="Favoris" className="h-7 w-7" />
+								{/* <img src={Coeuricon} alt="Favoris" className="h-7 w-7" /> */}
 							</RouterLink>
 						</div>
 					</nav>
