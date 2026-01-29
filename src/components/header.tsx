@@ -1,10 +1,10 @@
-import { useState } from "react";
+// import { useState } from "react";
 import { Link as RouterLink } from "react-router-dom";
 // import Coeuricon from "../assets/Favoris.svg";
 // import PanierIcon from "../assets/Panier.svg";
 
 export default function Header() {
-	const [isMenuOpen, setIsMenuOpen] = useState(false);
+	// const [isMenuOpen, setIsMenuOpen] = useState(false);
 
 	return (
 		<header className="sticky top-0 z-50 bg-rose-300 shadow-lg">
@@ -61,20 +61,20 @@ export default function Header() {
 							to="/Panier"
 							className="p-2 rounded-full hover:bg-rose-400 transition-colors duration-300"
 						>
-							<img src={PanierIcon} alt="Panier" className="h-6 w-6" />
+							{/* <img src={PanierIcon} alt="Panier" className="h-6 w-6" /> */}
 						</RouterLink>
 
 						<RouterLink
 							to="/Favoris"
 							className="p-2 rounded-full hover:bg-rose-400 transition-colors duration-300"
 						>
-							<img src={Coeuricon} alt="Favoris" className="h-6 w-6" />
+							{/* <img src={Coeuricon} alt="Favoris" className="h-6 w-6" /> */}
 						</RouterLink>
 
 						{/* Hamburger Button */}
 						<button
 							type="button"
-							onClick={() => setIsMenuOpen(!isMenuOpen)}
+							// onClick={() => setIsMenuOpen(!isMenuOpen)}
 							className="p-2 rounded-lg hover:bg-rose-400 transition-colors duration-300"
 							aria-label="Toggle menu"
 						>
@@ -87,9 +87,9 @@ export default function Header() {
 								aria-labelledby="menuIconTitle"
 							>
 								<title id="menuIconTitle">
-									{isMenuOpen ? "Fermer le menu" : "Ouvrir le menu"}
+									{/* {isMenuOpen ? "Fermer le menu" : "Ouvrir le menu"} */}
 								</title>
-								{isMenuOpen ? (
+								{/* {isMenuOpen ? (
 									<path
 										strokeLinecap="round"
 										strokeLinejoin="round"
@@ -103,14 +103,14 @@ export default function Header() {
 										strokeWidth={2}
 										d="M4 6h16M4 12h16M4 18h16"
 									/>
-								)}
+								)} */}
 							</svg>
 						</button>
 					</div>
 				</div>
 
 				{/* Mobile Menu */}
-				<div
+				{/* <div
 					className={`md:hidden overflow-hidden transition-all duration-300 ease-in-out ${
 						isMenuOpen ? "max-h-40 mt-4" : "max-h-0"
 					}`}
@@ -132,7 +132,7 @@ export default function Header() {
 							Créer un bouquet
 						</RouterLink>
 					</nav>
-				</div>
+				</div> */}
 			</div>
 		</header>
 	);
