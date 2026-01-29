@@ -12,7 +12,10 @@ interface Bouquet {
 function ChoisirBouquet() {
 	const [bouquets, setBouquets] = useState<Bouquet[]>([]);
 	const [loading, setLoading] = useState<boolean>(true);
-	const [favorites, setFavorites] = useState<number[]>([]);
+	const [favorites, setFavorites] = useState<Bouquet[]>(() => {
+		const saved = localStorage.getItem("favorites");
+		return saved ? JSON.parse(saved) : [];
+	});
 
 	useEffect(() => {
 		const fetchBouquets = async () => {
@@ -30,11 +33,14 @@ function ChoisirBouquet() {
 	}, []);
 
 	const handleToggleFavorite = (bouquet: Bouquet) => {
-		setFavorites((prev) =>
-			prev.includes(bouquet.id)
-				? prev.filter((id) => id !== bouquet.id)
-				: [...prev, bouquet.id],
-		);
+		setFavorites((prev) => {
+			const exists = prev.some((fav) => fav.id === bouquet.id);
+			const updated = exists
+				? prev.filter((fav) => fav.id !== bouquet.id)
+				: [...prev, bouquet];
+			localStorage.setItem("favorites", JSON.stringify(updated));
+			return updated;
+		});
 	};
 
 	if (loading) {
@@ -63,7 +69,7 @@ function ChoisirBouquet() {
 							key={bouquet.id}
 							bouquet={bouquet}
 							onToggleFavorite={handleToggleFavorite}
-							isFavorite={favorites.includes(bouquet.id)}
+							isFavorite={favorites.some((fav) => fav.id === bouquet.id)}
 						/>
 					))}
 				</div>

@@ -5,6 +5,7 @@ import ChoisirBouquet from "./pages/ChoisirBouquet";
 import ChoisirFleurs from "./pages/ChoisirFleurs";
 import HomePage from "./pages/HomePage";
 import "./App.css";
+import PageFavoris from "./pages/PageFavoris.tsx";
 
 export default function App() {
 	return (
@@ -14,6 +15,7 @@ export default function App() {
 				<Route path="/" element={<HomePage />} />
 				<Route path="/choisir-bouquet" element={<ChoisirBouquet />} />
 				<Route path="/choisir-fleurs" element={<ChoisirFleurs />} />
+				<Route path="/Favoris" element={<PageFavoris />} />
 			</Routes>
 			<Footer />
 		</>
