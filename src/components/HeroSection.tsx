@@ -16,13 +16,13 @@ function HeroSection() {
 
 				<div className="flex flex-col gap-4">
 					<Link
-						to="/choisir-bouquet"
+						to="/choisir-fleurs"
 						className="bg-[#185227]/70 text-white px-6 py-3 rounded-lg"
 					>
 						Composer votre bouquet personnalisé
 					</Link>
 					<Link
-						to="/choisir-fleurs"
+						to="/choisir-bouquet"
 						className="bg-[#185227]/70 text-white px-6 py-3 rounded-lg"
 					>
 						Découvrir nos bouquets
