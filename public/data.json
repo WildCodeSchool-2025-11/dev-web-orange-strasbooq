@@ -100,7 +100,7 @@
 		"nom": "Thym",
 		"description": "Parfum puissant et chaleureux",
 		"prix": 2,
-		"image": "/herbes/thym.jpg",
+		"image": "/herbes/thym.png",
 		"categorie": "herbe"
 	},
 	{
@@ -108,7 +108,7 @@
 		"nom": "Fenouil",
 		"description": "Parfum anisé et frais",
 		"prix": 2,
-		"image": "/herbes/fenouil.jpg",
+		"image": "/herbes/fenouil.png",
 		"categorie": "herbe"
 	},
 	{
@@ -116,7 +116,7 @@
 		"nom": "Sauge",
 		"description": "Parfum aromatique et doux",
 		"prix": 2,
-		"image": "/herbes/sauge.jpg",
+		"image": "/herbes/sauge.png",
 		"categorie": "herbe"
 	}
 ]
