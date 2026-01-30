@@ -12,12 +12,14 @@ interface CardBouquetProps {
 	bouquet: Bouquet;
 	onToggleFavorite: (bouquet: Bouquet) => void;
 	isFavorite?: boolean;
+	onAddToCart: () => void;
 }
 
 function CardBouquet({
 	bouquet,
 	onToggleFavorite,
 	isFavorite = false,
+	onAddToCart,
 }: CardBouquetProps) {
 	return (
 		<div className="bg-gray-50 p-5 rounded-lg overflow-hidden shadow-md hover:shadow-lg transition-shadow border border-gray-200/50">
@@ -39,6 +41,7 @@ function CardBouquet({
 				</button>
 				<button
 					type="button"
+					onClick={onAddToCart}
 					className="inline-flex gap-2 bg-blue-200 py-2 px-6 rounded-xl cursor-pointer hover:bg-blue-300 transition-all duration-300 border border-blue-300 shadow"
 				>
 					<img src={CartIcon} alt="Panier" />

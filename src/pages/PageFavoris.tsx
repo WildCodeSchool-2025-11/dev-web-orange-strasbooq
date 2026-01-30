@@ -24,6 +24,15 @@ function PageFavoris() {
 	const [loading, setLoading] = useState<boolean>(true);
 	const [error, setError] = useState<string | null>(null);
 
+	const [showAlert, setShowAlert] = useState(false);
+	const [alertMessage, setAlertMessage] = useState("");
+
+	const showAlertMessage = (message: string) => {
+		setAlertMessage(message);
+		setShowAlert(true);
+		setTimeout(() => setShowAlert(false), 5000);
+	};
+
 	useEffect(() => {
 		fetch("https://api-strasbouq.vercel.app/items")
 			.then((response) => {
@@ -74,8 +83,21 @@ function PageFavoris() {
 		);
 	}
 
+	const handleAddToCart = (bouquet: Bouquet) => {
+		const savedCart = localStorage.getItem("caddy");
+		const caddy: Bouquet[] = savedCart ? JSON.parse(savedCart) : [];
+		caddy.push(bouquet);
+		localStorage.setItem("caddy", JSON.stringify(caddy));
+		showAlertMessage(`Bouquet ajouté au panier: ${bouquet.nom}`);
+	};
+
 	return (
 		<div className="container mx-auto px-4 py-8">
+			{showAlert && (
+				<div className="fixed top-4 right-20 bg-green-600 text-white font-semibold px-6 py-3 rounded-lg shadow-lg z-50">
+					{alertMessage}
+				</div>
+			)}
 			<h1 className="text-3xl text-center py-5 font-bold mb-6">
 				Mes Bouquets Favoris
 			</h1>
@@ -92,6 +114,7 @@ function PageFavoris() {
 						<CardBouquet
 							bouquet={bouquet}
 							onToggleFavorite={handleRemoveFavorite}
+							onAddToCart={() => handleAddToCart(bouquet)}
 							isFavorite={true}
 						/>
 					</div>
