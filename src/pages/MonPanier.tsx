@@ -63,6 +63,7 @@ export default function MonPanier() {
 							stroke="currentColor"
 							viewBox="0 0 24 24"
 						>
+							<title>Panier vide</title>
 							<path
 								strokeLinecap="round"
 								strokeLinejoin="round"
@@ -147,6 +148,7 @@ export default function MonPanier() {
 												stroke="currentColor"
 												viewBox="0 0 24 24"
 											>
+												<title>Supprimer l'article</title>
 												<path
 													strokeLinecap="round"
 													strokeLinejoin="round"
