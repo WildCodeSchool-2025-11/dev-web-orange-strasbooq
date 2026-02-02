@@ -1,4 +1,5 @@
-[
+{ 
+	"fleurs":[
 	{
 		"id": "amaryllis",
 		"nom": "Amaryllis",
@@ -119,4 +120,42 @@
 		"image": "/herbes/sauge.png",
 		"categorie": "herbe"
 	}
-]
+],
+"avis": [
+    {
+      "id": 1,
+      "nom": "Marie Dubois",
+      "commentaire": "Superbe bouquet de roses pour l'anniversaire de ma mère !",
+      "note": 5,
+      "date": "15 janvier 2026"
+    },
+    {
+      "id": 2,
+      "nom": "Thomas Laurent",
+      "commentaire": "Bouquet magnifique. Ma femme était ravie !",
+      "note": 5,
+      "date": "28 janvier 2026"
+    },
+    {
+      "id": 3,
+      "nom": "Sophie Martin",
+      "commentaire": "Très beau bouquet festif, exactement ce que je voulais.",
+      "note": 4,
+      "date": "10 janvier 2026"
+    },
+    {
+      "id": 4,
+      "nom": "Pierre Leroy",
+      "commentaire": "Composition florale pour un mariage, tout le monde a adoré !",
+      "note": 5,
+      "date": "3 janvier 2026"
+    },
+    {
+      "id": 5,
+      "nom": "Émilie Bernard",
+      "commentaire": "J'adore pouvoir créer mon bouquet personnalisé ! C'est une excellente idée de pouvoir choisir ses fleurs, feuillages et herbes. Le résultat est exactement ce que je voulais.",
+      "note": 4,
+      "date": "22 janvier 2026"
+    }
+  ]
+}

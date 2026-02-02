@@ -5,13 +5,13 @@ import ItemCard from "../components/ItemCard";
 function ChoisirFleurs() {
 	const [etape, setEtape] = useState(1);
 
-	let itemsAffiches: typeof data = [];
+	let itemsAffiches: typeof data.fleurs = [];
 	if (etape === 1) {
-		itemsAffiches = data.filter((item) => item.categorie === "fleur");
+		itemsAffiches = data.fleurs.filter((item) => item.categorie === "fleur");
 	} else if (etape === 2) {
-		itemsAffiches = data.filter((item) => item.categorie === "feuillage");
+		itemsAffiches = data.fleurs.filter((item) => item.categorie === "feuillage");
 	} else if (etape === 3) {
-		itemsAffiches = data.filter((item) => item.categorie === "herbe");
+		itemsAffiches = data.fleurs.filter((item) => item.categorie === "herbe");
 	}
 
 	return (
