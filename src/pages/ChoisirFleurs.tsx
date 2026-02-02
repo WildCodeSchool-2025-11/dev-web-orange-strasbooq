@@ -9,7 +9,9 @@ function ChoisirFleurs() {
 	if (etape === 1) {
 		itemsAffiches = data.fleurs.filter((item) => item.categorie === "fleur");
 	} else if (etape === 2) {
-		itemsAffiches = data.fleurs.filter((item) => item.categorie === "feuillage");
+		itemsAffiches = data.fleurs.filter(
+			(item) => item.categorie === "feuillage",
+		);
 	} else if (etape === 3) {
 		itemsAffiches = data.fleurs.filter((item) => item.categorie === "herbe");
 	}
