@@ -78,7 +78,7 @@ function CarrouselAvis() {
 					stroke="currentColor"
 					viewBox="0 0 24 24"
 				>
-          <title>Précédent</title>
+					<title>Précédent</title>
 					<path
 						strokeLinecap="round"
 						strokeLinejoin="round"
@@ -123,7 +123,7 @@ function CarrouselAvis() {
 					stroke="currentColor"
 					viewBox="0 0 24 24"
 				>
-          <title>Suivant</title>
+					<title>Suivant</title>
 					<path
 						strokeLinecap="round"
 						strokeLinejoin="round"
