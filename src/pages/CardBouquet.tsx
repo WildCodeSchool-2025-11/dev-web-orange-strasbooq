@@ -12,7 +12,7 @@ interface CardBouquetProps {
 	bouquet: Bouquet;
 	onToggleFavorite: (bouquet: Bouquet) => void;
 	isFavorite?: boolean;
-	onAddToCart: () => void;
+	onAddToCart: (bouquet: Bouquet) => void;
 }
 
 function CardBouquet({
@@ -30,7 +30,9 @@ function CardBouquet({
 			/>
 			<h2 className="text-center font-bold py-4">{bouquet.nom}</h2>
 			<p className="text-center py-4">{bouquet.description}</p>
-			<p className="text-center py-2 font-bold text-2xl">{bouquet.prix}€</p>
+			<p className="text-center py-2 font-bold text-2xl">
+				{bouquet.prix.toFixed(2)}€
+			</p>
 			<div className="flex flex-col items-center justify-center gap-2 py-4">
 				<button
 					type="button"
@@ -41,7 +43,7 @@ function CardBouquet({
 				</button>
 				<button
 					type="button"
-					onClick={onAddToCart}
+					onClick={() => onAddToCart(bouquet)}
 					className="inline-flex gap-2 bg-blue-200 py-2 px-6 rounded-xl cursor-pointer hover:bg-blue-300 transition-all duration-300 border border-blue-300 shadow"
 				>
 					<img src={CartIcon} alt="Panier" />
