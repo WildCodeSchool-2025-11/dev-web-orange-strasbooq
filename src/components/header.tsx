@@ -3,8 +3,13 @@ import { Link as RouterLink } from "react-router-dom";
 import Coeuricon from "../assets/Favoris.svg";
 import PanierIcon from "../assets/Panier.svg";
 
+import { useAuth } from "../context/LogInOutContext";
+
 export default function Header() {
 	const [isMenuOpen, setIsMenuOpen] = useState(false);
+
+	const { code, setCode, isLogin, message, handleLogin, handleLogout } =
+		useAuth();
 
 	return (
 		<header className="sticky top-0 z-50 bg-rose-300 shadow-lg">
@@ -52,6 +57,31 @@ export default function Header() {
 							>
 								<img src={Coeuricon} alt="Favoris" className="h-7 w-7" />
 							</RouterLink>
+						</div>
+
+						<div className="bg-blue-200">
+							<>
+								{message && <div>{message}</div>}
+								{isLogin ? (
+									<>
+										<button type="button" onClick={handleLogout}>
+											logout
+										</button>
+									</>
+								) : (
+									<>
+										<input
+											type="password"
+											name="code"
+											value={code}
+											onChange={(e) => setCode(e.target.value)}
+										/>
+										<button type="button" onClick={handleLogin}>
+											login
+										</button>
+									</>
+								)}
+							</>
 						</div>
 					</nav>
 
