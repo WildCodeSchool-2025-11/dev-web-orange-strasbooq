@@ -6,7 +6,7 @@ const AuthContext = createContext(null as any);
 export function AuthProvider({ children }: { children: ReactNode }) {
 	const [code, setCode] = useState("****");
 	const [isLogin, setIsLogin] = useState(false);
-	const [message, setMessage] = useState(null);
+	const [message, setMessage] = useState<string | null>(null);
 	const [currentUser, setCurrentUser] = useState(false);
 
 	const handleLogin = () => {
