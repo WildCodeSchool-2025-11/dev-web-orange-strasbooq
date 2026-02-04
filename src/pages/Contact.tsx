@@ -1,4 +1,4 @@
-import emailjs from "@emailjs/src";
+import emailjs from "@emailjs/browser";
 import type React from "react";
 import { useRef, useState } from "react";
 
