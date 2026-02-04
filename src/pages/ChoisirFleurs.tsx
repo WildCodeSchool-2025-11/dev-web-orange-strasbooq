@@ -60,15 +60,15 @@ function ChoisirFleurs() {
 							Valider
 						</button>
 					)}
-					<nav className="hidden md:flex items-center gap-8">
-						<RouterLink
-							to="/conseils"
-							className="text-black font-medium text-lg hover:text-rose-700 transition-colors duration-300 relative group"
-						>
-							besoin de conseils ?{" "}
-							<span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-rose-700 transition-all duration-300 group-hover:w-full" />
-						</RouterLink>
-					</nav>
+					<button
+						type="button"
+						onClick={() => window.location.href = "/conseils"}
+						className="px-8 py-3 bg-[#185227] hover:bg-green-600 text-white rounded text-lg"
+					>
+						besoin de conseils ?{" "}
+						<span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-rose-700 transition-all duration-300 group-hover:w-full" />
+
+					</button>
 				</div>
 			</div>
 		</div>
