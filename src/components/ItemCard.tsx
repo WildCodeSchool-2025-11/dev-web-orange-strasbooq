@@ -1,21 +1,22 @@
 import { useCustomBouquet } from "../context/CustomBouquetContext";
 
 interface ItemCardProps {
-	item : {
+	item: {
 		id: string;
 		nom: string;
 		description: string;
-	    prix: number;
-	    image: string;
+		prix: number;
+		image: string;
 		quantity: number;
 		categorie: string;
-} }
-
+	};
+}
 
 function ItemCard({ item }: ItemCardProps) {
-	const {cartItems, addItems, updateQuantity, removeFromCart} = useCustomBouquet();
+	const { cartItems, addItems, updateQuantity, removeFromCart } =
+		useCustomBouquet();
 
-	const existingItem = cartItems.find(i => i.id === item.id);
+	const existingItem = cartItems.find((i) => i.id === item.id);
 	const quantity = existingItem?.quantity || 0;
 
 	const handleFirstAdd = () => {
@@ -52,31 +53,31 @@ function ItemCard({ item }: ItemCardProps) {
 						type="button"
 						onClick={handleFirstAdd}
 						className="mt-auto w-full inline-flex justify-center gap-2 bg-blue-200 py-2 px-6 rounded-xl cursor-pointer hover:bg-blue-300 transition-all duration-300 border border-blue-300 shadow"
-						> + Ajouter au bouquet
-				</button>
+					>
+						{" "}
+						+ Ajouter au bouquet
+					</button>
 				) : (
 					<div className="flex items-center justify-center gap-4 mt-auto">
-						<button 
-						type="button" 
-						onClick={handleRemove}
-						className="bg-blue-200 text-white w-8 h-8 rounded-full hover:bg-blue-300 transition-colors duration-200"
+						<button
+							type="button"
+							onClick={handleRemove}
+							className="bg-blue-200 text-white w-8 h-8 rounded-full hover:bg-blue-300 transition-colors duration-200"
 						>
 							-
 						</button>
-						<span className="text-lg font-semibold px-4">
-							{quantity}
-						</span>
-						<button 
-						type="button" 
-						onClick={handleAdd}
-						className="bg-blue-200 text-white w-8 h-8 rounded-full hover:bg-blue-300 transition-colors duration-200"
+						<span className="text-lg font-semibold px-4">{quantity}</span>
+						<button
+							type="button"
+							onClick={handleAdd}
+							className="bg-blue-200 text-white w-8 h-8 rounded-full hover:bg-blue-300 transition-colors duration-200"
 						>
 							+
 						</button>
-			    </div>
+					</div>
 				)}
+			</div>
 		</div>
-	</div>
 	);
 }
 

@@ -27,7 +27,8 @@ function ChoisirFleurs() {
 		categorieActuelle = "herbe";
 	}
 
-	const canGoNext = cartItems.filter(item => item.categorie === categorieActuelle).length > 0;
+	const canGoNext =
+		cartItems.filter((item) => item.categorie === categorieActuelle).length > 0;
 	return (
 		<div className="min-h-screen p-8 bg-[#FFC7CF]">
 			<div className="max-w-7xl mx-auto">
@@ -41,12 +42,12 @@ function ChoisirFleurs() {
 
 				<div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-6 mb-8">
 					{itemsAffiches.map((item) => (
-						<ItemCard 
-						key={item.id} 
-						item={{
-							...item,
-							quantity: 1,
-						}}		
+						<ItemCard
+							key={item.id}
+							item={{
+								...item,
+								quantity: 1,
+							}}
 						/>
 					))}
 				</div>
