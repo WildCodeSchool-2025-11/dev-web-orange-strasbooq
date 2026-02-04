@@ -4,6 +4,7 @@ import Footer from "./components/footer.tsx";
 import Header from "./components/header.tsx";
 import { CartProvider } from "./context/CartContext.tsx";
 import { AuthProvider } from "./context/LogInOutContext.tsx";
+import { CustomBouquetProvider } from "./context/CustomBouquetContext.tsx";
 import ChoisirBouquet from "./pages/ChoisirBouquet";
 import ChoisirFleurs from "./pages/ChoisirFleurs";
 import HomePage from "./pages/HomePage";
@@ -14,6 +15,7 @@ export default function App() {
 	return (
 		<AuthProvider>
 			<CartProvider>
+				<CustomBouquetProvider>
 				<Header />
 				<Routes>
 					<Route path="/" element={<HomePage />} />
@@ -23,7 +25,8 @@ export default function App() {
 					<Route path="/Favoris" element={<PageFavoris />} />
 				</Routes>
 				<Footer />
-			</CartProvider>
-		</AuthProvider>
+			</CustomBouquetProvider>
+		</CartProvider>
+	</AuthProvider>
 	);
 }
