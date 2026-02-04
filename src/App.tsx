@@ -8,12 +8,14 @@ import ChoisirFleurs from "./pages/ChoisirFleurs";
 import HomePage from "./pages/HomePage";
 import MonPanier from "./pages/MonPanier.tsx";
 import PageFavoris from "./pages/PageFavoris.tsx";
+import Conseils from "./pages/Conseils.tsx";
 
 export default function App() {
 	return (
 		<CartProvider>
 			<Header />
 			<Routes>
+				<Route path="/conseils" element={<Conseils />} />
 				<Route path="/" element={<HomePage />} />
 				<Route path="/choisir-bouquet" element={<ChoisirBouquet />} />
 				<Route path="/choisir-fleurs" element={<ChoisirFleurs />} />
