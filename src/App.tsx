@@ -5,10 +5,10 @@ import Header from "./components/header.tsx";
 import { CartProvider } from "./context/CartContext.tsx";
 import ChoisirBouquet from "./pages/ChoisirBouquet";
 import ChoisirFleurs from "./pages/ChoisirFleurs";
+import Conseils from "./pages/Conseils.tsx";
 import HomePage from "./pages/HomePage";
 import MonPanier from "./pages/MonPanier.tsx";
 import PageFavoris from "./pages/PageFavoris.tsx";
-import Conseils from "./pages/Conseils.tsx";
 
 export default function App() {
 	return (

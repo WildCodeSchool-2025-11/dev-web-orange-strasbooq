@@ -1,7 +1,7 @@
 import { useState } from "react";
+import { Link as RouterLink } from "react-router-dom";
 import data from "../../public/data.json";
 import ItemCard from "../components/ItemCard";
-import { Link as RouterLink } from "react-router-dom";
 
 function ChoisirFleurs() {
 	const [etape, setEtape] = useState(1);
@@ -65,7 +65,8 @@ function ChoisirFleurs() {
 							to="/conseils"
 							className="text-black font-medium text-lg hover:text-rose-700 transition-colors duration-300 relative group"
 						>
-							besoin de conseils ?							<span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-rose-700 transition-all duration-300 group-hover:w-full" />
+							besoin de conseils ?{" "}
+							<span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-rose-700 transition-all duration-300 group-hover:w-full" />
 						</RouterLink>
 					</nav>
 				</div>
