@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { useCart } from "../context/CartContext";
 import CardBouquet from "./CardBouquet";
 
 interface Bouquet {
@@ -14,6 +15,7 @@ function ChoisirBouquet() {
 	const [loading, setLoading] = useState<boolean>(true);
 	const [showAlert, setShowAlert] = useState(false);
 	const [alertMessage, setAlertMessage] = useState("");
+	const { addToCart } = useCart();
 
 	const showAlertMessage = (message: string) => {
 		setAlertMessage(message);
@@ -61,10 +63,7 @@ function ChoisirBouquet() {
 	}
 
 	const handleAddToCart = (bouquet: Bouquet) => {
-		const savedCart = localStorage.getItem("caddy");
-		const caddy: Bouquet[] = savedCart ? JSON.parse(savedCart) : [];
-		caddy.push(bouquet);
-		localStorage.setItem("caddy", JSON.stringify(caddy));
+		addToCart({ ...bouquet, quantity: 1 });
 		showAlertMessage(`Bouquet ajouté au panier: ${bouquet.nom}`);
 	};
 
