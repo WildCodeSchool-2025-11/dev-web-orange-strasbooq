@@ -22,7 +22,7 @@ export default function App() {
 					<Route path="/choisir-fleurs" element={<ChoisirFleurs />} />
 					<Route path="/Panier" element={<MonPanier />} />
 					<Route path="/Favoris" element={<PageFavoris />} />
-          <Route path="/conseils" element={<Conseils />} />
+					<Route path="/conseils" element={<Conseils />} />
 				</Routes>
 				<Footer />
 			</CartProvider>
