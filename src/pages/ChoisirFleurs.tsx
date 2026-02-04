@@ -1,10 +1,11 @@
 import { useState } from "react";
-import { Link as RouterLink } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import data from "../../public/data.json";
 import ItemCard from "../components/ItemCard";
 
 function ChoisirFleurs() {
 	const [etape, setEtape] = useState(1);
+	const navigate = useNavigate();
 
 	let itemsAffiches: typeof data.fleurs = [];
 	if (etape === 1) {
@@ -62,12 +63,11 @@ function ChoisirFleurs() {
 					)}
 					<button
 						type="button"
-						onClick={() => window.location.href = "/conseils"}
+						onClick={() => navigate("/conseils")}
 						className="px-8 py-3 bg-[#185227] hover:bg-green-600 text-white rounded text-lg"
 					>
 						besoin de conseils ?{" "}
 						<span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-rose-700 transition-all duration-300 group-hover:w-full" />
-
 					</button>
 				</div>
 			</div>
