@@ -3,6 +3,7 @@ import Calendar from "react-calendar";
 import "react-calendar/dist/Calendar.css";
 import { Link } from "react-router-dom";
 import { useCart } from "../context/CartContext";
+import { useCustomBouquet } from "../context/CustomBouquetContext";
 
 type ValuePiece = Date | null;
 type Value = ValuePiece | [ValuePiece, ValuePiece];
@@ -48,11 +49,17 @@ export default function MonPanier() {
 		getCartCount,
 	} = useCart();
 
+	const {
+		cartItems: customBouquetItems,
+		resetBouquet: clearCustomBouquet,
+		getBouquetTotal: getCustomBouquetTotal,
+	} = useCustomBouquet();
+
 	const isFormValid =
 		nom.trim() !== "" && prenom.trim() !== "" && selectedDate instanceof Date;
 
 	// Empty cart state
-	if (cartItems.length === 0) {
+	if (cartItems.length === 0 && customBouquetItems.length === 0) {
 		return (
 			<main className="min-h-[60vh] flex items-center justify-center px-4">
 				<div className="text-center">
@@ -95,8 +102,11 @@ export default function MonPanier() {
 			<div className="mb-8">
 				<h1 className="text-3xl font-bold text-gray-800">Mon Panier</h1>
 				<p className="text-gray-500 mt-1">
-					{getCartCount()} article{getCartCount() > 1 ? "s" : ""} dans votre
-					panier
+					{getCartCount() + (customBouquetItems.length > 0 ? 1 : 0)} article
+					{getCartCount() + (customBouquetItems.length > 0 ? 1 : 0) > 1
+						? "s"
+						: ""}{" "}
+					dans votre panier
 				</p>
 			</div>
 
@@ -186,6 +196,56 @@ export default function MonPanier() {
 									</div>
 								</div>
 							))}
+							{customBouquetItems.length > 0 && (
+								<div className="p-4 flex gap-4">
+									<img
+										src="/public/bouquetperso.png"
+										alt="Bouquet personnalisé"
+										className="w-24 h-24 object-cover rounded-xl"
+									/>
+									<div className="flex-1 min-w-0">
+										<h3 className="font-semibold text-gray-800">
+											Bouquet personnalisé
+										</h3>
+										<div className="mt-2 space-y-1">
+											{customBouquetItems.map((item) => (
+												<p key={item.id} className="text-sm text-gray-500">
+													• {item.nom} x{item.quantity} (
+													{(item.prix * item.quantity).toFixed(2)}
+													€)
+												</p>
+											))}
+										</div>
+										<p className="text-emerald-600 font-bold mt-2">
+											{getCustomBouquetTotal().toFixed(2)} €
+										</p>
+									</div>
+
+									<div className="flex flex-col items-end justify-between">
+										<button
+											type="button"
+											onClick={clearCustomBouquet}
+											className="text-gray-400 hover:text-red-500 transition-colors cursor-pointer"
+											aria-label="Supprimer le bouquet personnalisé"
+										>
+											<svg
+												className="w-5 h-5"
+												fill="none"
+												stroke="currentColor"
+												viewBox="0 0 24 24"
+											>
+												<title>Supprimer le bouquet personnalisé</title>
+												<path
+													strokeLinecap="round"
+													strokeLinejoin="round"
+													strokeWidth={2}
+													d="M6 18L18 6M6 6l12 12"
+												/>
+											</svg>
+										</button>
+									</div>
+								</div>
+							)}
 						</div>
 					</section>
 
@@ -288,6 +348,17 @@ export default function MonPanier() {
 									</span>
 								</div>
 							))}
+
+							{customBouquetItems.length > 0 && (
+								<div className="flex justify-between text-sm">
+									<span className="text-gray-600 truncate max-w-[60%]">
+										Bouquet personnalisé
+									</span>
+									<span className="text-gray-800 font-medium">
+										{getCustomBouquetTotal().toFixed(2)} €
+									</span>
+								</div>
+							)}
 						</div>
 
 						{/* Totals */}
@@ -295,7 +366,7 @@ export default function MonPanier() {
 							<div className="flex justify-between text-sm">
 								<span className="text-gray-600">Sous-total</span>
 								<span className="text-gray-800">
-									{getCartTotal().toFixed(2)} €
+									{(getCartTotal() + getCustomBouquetTotal()).toFixed(2)} €
 								</span>
 							</div>
 							<div className="flex justify-between text-sm">
@@ -307,7 +378,7 @@ export default function MonPanier() {
 						<div className="flex justify-between py-4">
 							<span className="text-lg font-bold text-gray-800">Total</span>
 							<span className="text-lg font-bold text-emerald-600">
-								{getCartTotal().toFixed(2)} €
+								{(getCartTotal() + getCustomBouquetTotal()).toFixed(2)} €
 							</span>
 						</div>
 
