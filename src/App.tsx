@@ -28,6 +28,7 @@ export default function App() {
 								<Route path="/Panier" element={<MonPanier />} />
 								<Route path="/Favoris" element={<PageFavoris />} />
 								<Route path="/conseils" element={<Conseils />} />
+								<Route path="/contact" element={<Contact />} />
 							</Routes>
 						</main>
 						<Footer />
