@@ -3,6 +3,7 @@ import { Route, Routes } from "react-router-dom";
 import Footer from "./components/footer.tsx";
 import Header from "./components/header.tsx";
 import { CartProvider } from "./context/CartContext.tsx";
+import { CustomBouquetProvider } from "./context/CustomBouquetContext.tsx";
 import { AuthProvider } from "./context/LogInOutContext.tsx";
 import ChoisirBouquet from "./pages/ChoisirBouquet";
 import ChoisirFleurs from "./pages/ChoisirFleurs";
@@ -15,16 +16,18 @@ export default function App() {
 	return (
 		<AuthProvider>
 			<CartProvider>
-				<Header />
-				<Routes>
-					<Route path="/" element={<HomePage />} />
-					<Route path="/choisir-bouquet" element={<ChoisirBouquet />} />
-					<Route path="/choisir-fleurs" element={<ChoisirFleurs />} />
-					<Route path="/Panier" element={<MonPanier />} />
-					<Route path="/Favoris" element={<PageFavoris />} />
-					<Route path="/conseils" element={<Conseils />} />
-				</Routes>
-				<Footer />
+				<CustomBouquetProvider>
+					<Header />
+					<Routes>
+						<Route path="/" element={<HomePage />} />
+						<Route path="/choisir-bouquet" element={<ChoisirBouquet />} />
+						<Route path="/choisir-fleurs" element={<ChoisirFleurs />} />
+						<Route path="/Panier" element={<MonPanier />} />
+						<Route path="/Favoris" element={<PageFavoris />} />
+						<Route path="/conseils" element={<Conseils />} />
+					</Routes>
+					<Footer />
+				</CustomBouquetProvider>
 			</CartProvider>
 		</AuthProvider>
 	);

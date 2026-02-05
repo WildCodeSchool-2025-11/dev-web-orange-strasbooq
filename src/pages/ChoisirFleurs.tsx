@@ -2,9 +2,11 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import data from "../../public/data.json";
 import ItemCard from "../components/ItemCard";
+import { useCustomBouquet } from "../context/CustomBouquetContext";
 
 function ChoisirFleurs() {
 	const [etape, setEtape] = useState(1);
+	const { cartItems } = useCustomBouquet();
 	const navigate = useNavigate();
 
 	let itemsAffiches: typeof data.fleurs = [];
@@ -18,6 +20,17 @@ function ChoisirFleurs() {
 		itemsAffiches = data.fleurs.filter((item) => item.categorie === "herbe");
 	}
 
+	let categorieActuelle = "";
+	if (etape === 1) {
+		categorieActuelle = "fleur";
+	} else if (etape === 2) {
+		categorieActuelle = "feuillage";
+	} else if (etape === 3) {
+		categorieActuelle = "herbe";
+	}
+
+	const canGoNext =
+		cartItems.filter((item) => item.categorie === categorieActuelle).length > 0;
 	return (
 		<div className="min-h-screen p-8 bg-[#FFC7CF]">
 			<div className="max-w-7xl mx-auto">
@@ -33,10 +46,10 @@ function ChoisirFleurs() {
 					{itemsAffiches.map((item) => (
 						<ItemCard
 							key={item.id}
-							nom={item.nom}
-							description={item.description}
-							prix={item.prix}
-							image={item.image}
+							item={{
+								...item,
+								quantity: 1,
+							}}
 						/>
 					))}
 				</div>
@@ -55,10 +68,15 @@ function ChoisirFleurs() {
 					{etape < 3 && (
 						<button
 							type="button"
+							disabled={!canGoNext}
 							onClick={() => setEtape(etape + 1)}
-							className="px-8 py-3 bg-[#185227] hover:bg-green-600 text-white rounded text-lg"
+							className={`px-8 py-3 text-lg ${
+								canGoNext
+									? "bg-[#185227] hover:bg-green-600 rounded text-white cursor-pointer"
+									: "bg-gray-400 text-gray-700 rounded cursor-not-allowed"
+							}`}
 						>
-							Valider
+							Suivant
 						</button>
 					)}
 					<button
