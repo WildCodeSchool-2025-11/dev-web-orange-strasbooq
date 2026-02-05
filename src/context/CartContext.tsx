@@ -85,7 +85,7 @@ export const CartProvider = ({ children }: { children: ReactNode }) => {
 		);
 	};
 
-	// get total number of product
+	// get total number of product in cart header
 	const getCartCount = () => {
 		return cartItems.reduce((count, item) => count + item.quantity, 0);
 	};
