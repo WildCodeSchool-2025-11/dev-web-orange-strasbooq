@@ -79,7 +79,7 @@ function PageFavoris() {
 	}
 	if (favoritesBouquet.length === 0) {
 		return (
-			<div className="text-center p-5">
+			<div className="text-center p-5 min-h-[60vh] flex items-center justify-center">
 				Vous n'avez pas de bouquets favoris pour le moment.
 			</div>
 		);
