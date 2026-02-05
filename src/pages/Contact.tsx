@@ -13,13 +13,15 @@ export default function Contact() {
 		setFormStatus("sending");
 
 		if (formRef.current) {
+			emailjs;
 			emailjs
 				.sendForm(
-					"YOUR_SERVICE_ID",
-					"YOUR_TEMPLATE_ID",
+					"service_o21uzov",
+					"template_z58shdo",
 					formRef.current,
-					"YOUR_USER_ID",
+					"LXei9u65TQbO4eGJq",
 				)
+
 				.then(() => {
 					setFormStatus("success");
 					formRef.current?.reset();
@@ -32,7 +34,7 @@ export default function Contact() {
 
 	return (
 		<div className="container mx-auto px-4 sm:px-6 py-8">
-			<h1 className="text-3xl font-bold mb-6 text-rose-700">Me contacter</h1>
+			<h1 className="text-3xl font-bold mb-6 text-rose-700">Nous contacter</h1>
 			<form ref={formRef} onSubmit={handleSubmit} className="max-w-lg mx-auto">
 				<div className="mb-4">
 					<label
@@ -82,7 +84,7 @@ export default function Contact() {
 				<button
 					type="submit"
 					disabled={formStatus === "sending"}
-					className="px-6 py-2 bg-rose-600 text-white font-semibold rounded hover:bg-rose-700 transition-colors duration-300"
+					className="px-8 py-3 bg-[#185227] hover:bg-green-600 text-white rounded text-lg"
 				>
 					{formStatus === "sending" ? "Envoi..." : "Envoyer le message"}
 				</button>
