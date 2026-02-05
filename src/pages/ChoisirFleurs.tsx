@@ -79,6 +79,22 @@ function ChoisirFleurs() {
 							Suivant
 						</button>
 					)}
+
+					{etape === 3 && (
+						<button
+							type="button"
+							disabled={!canGoNext}
+							onClick={() => navigate("/Panier")}
+							className={`px-8 py-3 text-lg ${
+								canGoNext
+									? "bg-[#185227] hover:bg-green-600 rounded text-white cursor-pointer"
+									: "bg-gray-400 text-gray-700 rounded cursor-not-allowed"
+							}`}
+						>
+							Valider mon bouquet
+						</button>
+					)}
+
 					<button
 						type="button"
 						onClick={() => navigate("/conseils")}
