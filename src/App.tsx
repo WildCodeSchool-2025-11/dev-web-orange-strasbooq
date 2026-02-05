@@ -16,18 +16,18 @@ export default function App() {
 	return (
 		<AuthProvider>
 			<CartProvider>
-        <CustomBouquetProvider>
-				<Header />
-				<Routes>
-					<Route path="/" element={<HomePage />} />
-					<Route path="/choisir-bouquet" element={<ChoisirBouquet />} />
-					<Route path="/choisir-fleurs" element={<ChoisirFleurs />} />
-					<Route path="/Panier" element={<MonPanier />} />
-					<Route path="/Favoris" element={<PageFavoris />} />
-					<Route path="/conseils" element={<Conseils />} />
-				</Routes>
-				<Footer />
-        </CustomBouquetProvider>
+				<CustomBouquetProvider>
+					<Header />
+					<Routes>
+						<Route path="/" element={<HomePage />} />
+						<Route path="/choisir-bouquet" element={<ChoisirBouquet />} />
+						<Route path="/choisir-fleurs" element={<ChoisirFleurs />} />
+						<Route path="/Panier" element={<MonPanier />} />
+						<Route path="/Favoris" element={<PageFavoris />} />
+						<Route path="/conseils" element={<Conseils />} />
+					</Routes>
+					<Footer />
+				</CustomBouquetProvider>
 			</CartProvider>
 		</AuthProvider>
 	);
