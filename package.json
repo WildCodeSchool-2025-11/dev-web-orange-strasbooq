@@ -15,11 +15,13 @@
 		"prepare": "husky"
 	},
 	"dependencies": {
+		"@emailjs/browser": "^4.4.1",
 		"@emotion/react": "latest",
 		"@emotion/styled": "latest",
 		"@mui/icons-material": "latest",
 		"@mui/material": "latest",
 		"@tailwindcss/vite": "^4.1.18",
+		"emailjs": "^5.0.0",
 		"react": "latest",
 		"react-calendar": "^6.0.0",
 		"react-dom": "latest",

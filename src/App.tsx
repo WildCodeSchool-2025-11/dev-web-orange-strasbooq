@@ -8,6 +8,7 @@ import { AuthProvider } from "./context/LogInOutContext.tsx";
 import ChoisirBouquet from "./pages/ChoisirBouquet";
 import ChoisirFleurs from "./pages/ChoisirFleurs";
 import Conseils from "./pages/Conseils.tsx";
+import Contact from "./pages/Contact.tsx";
 import HomePage from "./pages/HomePage";
 import MonPanier from "./pages/MonPanier.tsx";
 import PageFavoris from "./pages/PageFavoris.tsx";
@@ -17,20 +18,17 @@ export default function App() {
 		<AuthProvider>
 			<CartProvider>
 				<CustomBouquetProvider>
-					<div className="min-h-screen flex flex-col">
-						<Header />
-						<main className="flex-1">
-							<Routes>
-								<Route path="/" element={<HomePage />} />
-								<Route path="/choisir-bouquet" element={<ChoisirBouquet />} />
-								<Route path="/choisir-fleurs" element={<ChoisirFleurs />} />
-								<Route path="/Panier" element={<MonPanier />} />
-								<Route path="/Favoris" element={<PageFavoris />} />
-								<Route path="/conseils" element={<Conseils />} />
-							</Routes>
-						</main>
-						<Footer />
-					</div>
+					<Header />
+					<Routes>
+						<Route path="/" element={<HomePage />} />
+						<Route path="/choisir-bouquet" element={<ChoisirBouquet />} />
+						<Route path="/choisir-fleurs" element={<ChoisirFleurs />} />
+						<Route path="/Panier" element={<MonPanier />} />
+						<Route path="/Favoris" element={<PageFavoris />} />
+						<Route path="/conseils" element={<Conseils />} />
+						<Route path="/contact" element={<Contact />} />
+					</Routes>
+					<Footer />
 				</CustomBouquetProvider>
 			</CartProvider>
 		</AuthProvider>
