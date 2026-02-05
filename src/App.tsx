@@ -6,6 +6,7 @@ import { CartProvider } from "./context/CartContext.tsx";
 import { AuthProvider } from "./context/LogInOutContext.tsx";
 import ChoisirBouquet from "./pages/ChoisirBouquet";
 import ChoisirFleurs from "./pages/ChoisirFleurs";
+import Conseils from "./pages/Conseils.tsx";
 import HomePage from "./pages/HomePage";
 import MonPanier from "./pages/MonPanier.tsx";
 import PageFavoris from "./pages/PageFavoris.tsx";
@@ -21,6 +22,7 @@ export default function App() {
 					<Route path="/choisir-fleurs" element={<ChoisirFleurs />} />
 					<Route path="/Panier" element={<MonPanier />} />
 					<Route path="/Favoris" element={<PageFavoris />} />
+					<Route path="/conseils" element={<Conseils />} />
 				</Routes>
 				<Footer />
 			</CartProvider>

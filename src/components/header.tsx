@@ -60,28 +60,26 @@ export default function Header() {
 						</div>
 
 						<div className="bg-blue-200">
-							<>
-								{message && <div>{message}</div>}
-								{isLogin ? (
-									<>
-										<button type="button" onClick={handleLogout}>
-											logout
-										</button>
-									</>
-								) : (
-									<>
-										<input
-											type="password"
-											name="code"
-											value={code}
-											onChange={(e) => setCode(e.target.value)}
-										/>
-										<button type="button" onClick={handleLogin}>
-											login
-										</button>
-									</>
-								)}
-							</>
+							{message && <div>{message}</div>}
+							{isLogin ? (
+								<>
+									<button type="button" onClick={handleLogout}>
+										logout
+									</button>
+								</>
+							) : (
+								<>
+									<input
+										type="password"
+										name="code"
+										value={code}
+										onChange={(e) => setCode(e.target.value)}
+									/>
+									<button type="button" onClick={handleLogin}>
+										login
+									</button>
+								</>
+							)}
 						</div>
 					</nav>
 
