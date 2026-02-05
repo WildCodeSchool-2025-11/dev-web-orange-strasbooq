@@ -1,29 +1,58 @@
 import type { ReactNode } from "react";
-import { createContext, useContext, useState } from "react";
+import { createContext, useContext, useEffect, useState } from "react";
 
 const AuthContext = createContext(null as any);
 
 export function AuthProvider({ children }: { children: ReactNode }) {
-	const [code, setCode] = useState("****");
+	const [code, setCode] = useState("*****");
+	const [username, setUsername] = useState("");
 	const [isLogin, setIsLogin] = useState(false);
 	const [message, setMessage] = useState<string | null>(null);
-	const [currentUser, setCurrentUser] = useState(false);
+	const [isOpen, setIsOpen] = useState(false);
+	const [formData, setFormData] = useState({
+		username: "",
+		email: "",
+		password: "",
+	});
 
-	const handleLogin = () => {
-		if (code === "Fleurs") {
-			localStorage.setItem("login", "connected");
+	useEffect(() => {
+		const savedLogin = localStorage.getItem("login");
+		const savedUsername = localStorage.getItem("username");
+		if (savedLogin === "connected" && savedUsername) {
 			setIsLogin(true);
-			setMessage("Tu es connecté");
-			return;
+			setUsername(savedUsername);
 		}
-		setMessage("Erreur de mot de passe");
-		setIsLogin(false);
+	}, []);
+
+	const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+		e.preventDefault();
+
+		if (formData.password === "Fleurs") {
+			localStorage.setItem("login", "connected");
+			localStorage.setItem("username", formData.username);
+			setIsLogin(true);
+			setUsername(formData.username);
+			setMessage(`Bonjour ${formData.username}`);
+			setIsOpen(false);
+			setFormData({ username: "", email: "", password: "" });
+		} else {
+			setMessage("Mot de passe incorrect");
+		}
+	};
+
+	const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+		setFormData({
+			...formData,
+			[e.target.name]: e.target.value,
+		});
 	};
 
 	const handleLogout = () => {
 		setIsLogin(false);
 		setMessage(null);
+		setUsername("");
 		localStorage.removeItem("login");
+		localStorage.removeItem("username");
 	};
 
 	return (
@@ -33,11 +62,16 @@ export function AuthProvider({ children }: { children: ReactNode }) {
 				setCode,
 				isLogin,
 				setIsLogin,
-				currentUser,
-				setCurrentUser,
+				isOpen,
+				setIsOpen,
+				formData,
+				handleSubmit,
+				handleChange,
+				setFormData,
 				message,
-				handleLogin,
 				handleLogout,
+				username,
+				setUsername,
 			}}
 		>
 			{children}
