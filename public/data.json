@@ -121,6 +121,41 @@
 			"categorie": "herbe"
 		}
 	],
+
+"couleurs": [
+		{
+			"id": "rouge",
+			"nom": "Tons rouges",
+			"color": "#DC2626"
+		},
+		{
+			"id": "rose",
+			"nom": "Tons roses",
+			"color": "#EC4899"
+		},
+		{
+			"id": "violet",
+			"nom": "Tons violets",
+			"color": "#7C3AED"
+		},
+		{
+			"id": "blanc",
+			"nom": "Tons blancs",
+			"color": "#FFFFFF"
+		},
+		{
+			"id": "jaune",
+			"nom": "Tons jaunes",
+			"color": "#FCD34D"
+		},
+		{
+			"id": "vert",
+			"nom": "Tons verts",
+			"color": "#16A34A"
+		}
+	],
+
+
 	"avis": [
 		{
 			"id": 1,
