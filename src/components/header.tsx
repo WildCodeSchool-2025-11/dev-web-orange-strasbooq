@@ -3,7 +3,7 @@ import { Link as RouterLink } from "react-router-dom";
 import Coeuricon from "../assets/Favoris.svg";
 import Logo from "../assets/logo.png";
 import PanierIcon from "../assets/Panier.svg";
-
+import { useCart } from "../context/CartContext";
 import { useAuth } from "../context/LogInOutContext";
 
 export default function Header() {
@@ -19,6 +19,9 @@ export default function Header() {
 		handleLogout,
 		username,
 	} = useAuth();
+
+	const { getCartCount } = useCart();
+	const panierCount = getCartCount();
 
 	return (
 		<header className="sticky top-0 z-50 bg-white/80 backdrop-blur-md border-b border-gray-100 shadow-sm">
@@ -64,8 +67,13 @@ export default function Header() {
 						<div className="flex items-center gap-1">
 							<RouterLink
 								to="/Panier"
-								className="p-2.5 rounded-xl hover:bg-green-100 transition-colors duration-200 group"
+								className="relative p-2.5 rounded-xl hover:bg-green-100 transition-colors duration-200 group"
 							>
+								{panierCount > 0 && (
+									<span className="absolute -top-2 -right-2 bg-red-500 text-white text-xs font-bold rounded-full w-5 h-5 flex items-center justify-center">
+										{panierCount}
+									</span>
+								)}
 								<img
 									src={PanierIcon}
 									alt="Panier"
