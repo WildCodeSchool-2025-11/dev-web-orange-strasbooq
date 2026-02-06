@@ -5,6 +5,7 @@ import Header from "./components/header.tsx";
 import { CartProvider } from "./context/CartContext.tsx";
 import { CustomBouquetProvider } from "./context/CustomBouquetContext.tsx";
 import { AuthProvider } from "./context/LogInOutContext.tsx";
+import DashBoard from "./pages/backOffice/DashBoard.tsx";
 import ChoisirBouquet from "./pages/ChoisirBouquet";
 import ChoisirFleurs from "./pages/ChoisirFleurs";
 import Conseils from "./pages/Conseils.tsx";
@@ -27,6 +28,7 @@ export default function App() {
 						<Route path="/Favoris" element={<PageFavoris />} />
 						<Route path="/conseils" element={<Conseils />} />
 						<Route path="/contact" element={<Contact />} />
+						<Route path="/admin/dashboard" element={<DashBoard />} />
 					</Routes>
 					<Footer />
 				</CustomBouquetProvider>

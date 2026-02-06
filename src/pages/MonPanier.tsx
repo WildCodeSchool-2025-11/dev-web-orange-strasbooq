@@ -88,7 +88,37 @@ export default function MonPanier() {
 			</main>
 		);
 	}
+	const handleReservation = () => {
+		if (!isFormValid) return;
 
+		const nouvelleCommande = {
+			id: Date.now().toString(),
+			client: { nom, prenom },
+			dateRetrait:
+				selectedDate instanceof Date ? selectedDate.toISOString() : "",
+			articles: cartItems,
+			total: getCartTotal(),
+			dateCommande: new Date().toISOString(),
+			statut: "En attente",
+		};
+		const savedReservations = localStorage.getItem("reservations");
+		let reservationsArray = [];
+
+		try {
+			if (savedReservations) {
+				const parsed = JSON.parse(savedReservations);
+				reservationsArray = Array.isArray(parsed) ? parsed : [];
+			}
+		} catch (error) {
+			console.error("Erreur de lecture du localStorage", error);
+			reservationsArray = [];
+		}
+
+		const updatedReservations = [...reservationsArray, nouvelleCommande];
+		localStorage.setItem("reservations", JSON.stringify(updatedReservations));
+		clearCart();
+		alert("Votre réservation a été confirmée !");
+	};
 	return (
 		<main className="max-w-7xl mx-auto px-4 py-8">
 			{/* Header */}
@@ -332,6 +362,7 @@ export default function MonPanier() {
 
 						<button
 							type="button"
+							onClick={handleReservation}
 							disabled={!isFormValid}
 							className={`w-full py-3 rounded-xl font-semibold transition-all ${isFormValid ? "bg-emerald-500 text-white hover:bg-emerald-600 shadow-lg shadow-emerald-500/25 cursor-pointer" : "bg-gray-100 text-gray-400 cursor-not-allowed"}`}
 						>

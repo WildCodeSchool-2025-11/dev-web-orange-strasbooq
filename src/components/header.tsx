@@ -35,6 +35,14 @@ export default function Header() {
 
 					{/* Desktop Navigation */}
 					<nav className="hidden md:flex items-center gap-2">
+						{isLogin && (
+							<RouterLink
+								to="/admin/dashboard"
+								className="px-4 py-2 text-emerald-600 font-bold rounded-lg hover:bg-emerald-50 transition-all duration-200"
+							>
+								Dashboard
+							</RouterLink>
+						)}
 						<RouterLink
 							to="/choisir-bouquet"
 							className="px-4 py-2 text-gray-700 font-medium rounded-lg hover:bg-green-50 hover:text-green-600 transition-all duration-200"
@@ -195,9 +203,19 @@ export default function Header() {
 				>
 					<nav className="flex flex-col gap-1 pb-3">
 						{isLogin && (
-							<span className="text-gray-800 font-medium py-2 px-4">
-								Welcome {username}!
-							</span>
+							<>
+								<span className="text-gray-800 font-medium py-2 px-4">
+									Welcome {username}!
+								</span>
+								{/*Lien Dashboard Mobile */}
+								<RouterLink
+									to="/admin/dashboard"
+									onClick={() => setIsMenuOpen(false)}
+									className="text-emerald-600 font-bold py-2 px-4 rounded-lg hover:bg-emerald-50 transition-all duration-200"
+								>
+									Dashboard
+								</RouterLink>
+							</>
 						)}
 						<RouterLink
 							to="/choisir-bouquet"
