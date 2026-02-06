@@ -19,18 +19,22 @@ export default function App() {
 		<AuthProvider>
 			<CartProvider>
 				<CustomBouquetProvider>
-					<Header />
-					<Routes>
-						<Route path="/" element={<HomePage />} />
-						<Route path="/choisir-bouquet" element={<ChoisirBouquet />} />
-						<Route path="/choisir-fleurs" element={<ChoisirFleurs />} />
-						<Route path="/Panier" element={<MonPanier />} />
-						<Route path="/Favoris" element={<PageFavoris />} />
-						<Route path="/conseils" element={<Conseils />} />
-						<Route path="/contact" element={<Contact />} />
-						<Route path="/admin/dashboard" element={<DashBoard />} />
-					</Routes>
-					<Footer />
+					<div className="min-h-screen flex flex-col">
+						<Header />
+						<main className="flex-1">
+							<Routes>
+								<Route path="/" element={<HomePage />} />
+								<Route path="/choisir-bouquet" element={<ChoisirBouquet />} />
+								<Route path="/choisir-fleurs" element={<ChoisirFleurs />} />
+								<Route path="/Panier" element={<MonPanier />} />
+								<Route path="/Favoris" element={<PageFavoris />} />
+								<Route path="/conseils" element={<Conseils />} />
+								<Route path="/contact" element={<Contact />} />
+								<Route path="/admin/dashboard" element={<DashBoard />} />
+							</Routes>
+						</main>
+						<Footer />
+					</div>
 				</CustomBouquetProvider>
 			</CartProvider>
 		</AuthProvider>
