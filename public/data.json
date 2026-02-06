@@ -122,7 +122,7 @@
 		}
 	],
 
-"couleurs": [
+	"couleurs": [
 		{
 			"id": "rouge",
 			"nom": "Tons rouges",
@@ -154,7 +154,6 @@
 			"color": "#16A34A"
 		}
 	],
-
 
 	"avis": [
 		{
