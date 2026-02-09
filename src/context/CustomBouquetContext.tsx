@@ -11,11 +11,13 @@ interface Item {
 
 interface CustomBouquetType {
 	cartItems: Item[];
+	couleur: string;
 	addItems: (item: Item) => void;
 	removeFromCart: (itemId: string) => void;
 	updateQuantity: (itemId: string, quantity: number) => void;
 	resetBouquet: () => void;
 	getBouquetTotal: () => number;
+	setCouleur: (couleur: string) => void;
 }
 
 const CustomBouquetContext = createContext<CustomBouquetType | undefined>(
@@ -32,9 +34,18 @@ export const CustomBouquetProvider = ({
 		return saved ? JSON.parse(saved) : [];
 	});
 
+	const [couleur, setCouleur] = useState<string>(() => {
+		const saved = localStorage.getItem("customBouquetCouleur");
+		return saved ? saved : "";
+	});
+
 	useEffect(() => {
 		localStorage.setItem("customBouquet", JSON.stringify(customBouquetItems));
 	}, [customBouquetItems]);
+
+	useEffect(() => {
+		localStorage.setItem("customBouquetCouleur", couleur);
+	}, [couleur]);
 
 	const addItems = (item: Item) => {
 		setCustomBouquetItems((prevItems) => {
@@ -67,6 +78,7 @@ export const CustomBouquetProvider = ({
 
 	const resetBouquet = () => {
 		setCustomBouquetItems([]);
+		setCouleur("");
 	};
 
 	const getBouquetTotal = () => {
@@ -80,11 +92,13 @@ export const CustomBouquetProvider = ({
 		<CustomBouquetContext.Provider
 			value={{
 				cartItems: customBouquetItems,
+				couleur,
 				addItems,
 				removeFromCart,
 				updateQuantity,
 				resetBouquet,
 				getBouquetTotal,
+				setCouleur,
 			}}
 		>
 			{children}
