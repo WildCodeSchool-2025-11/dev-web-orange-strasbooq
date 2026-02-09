@@ -125,32 +125,32 @@
 	"couleurs": [
 		{
 			"id": "rouge",
-			"nom": "Tons rouges",
+			"nom": "Rouge",
 			"color": "#DC2626"
 		},
 		{
 			"id": "rose",
-			"nom": "Tons roses",
+			"nom": "Rose",
 			"color": "#EC4899"
 		},
 		{
 			"id": "violet",
-			"nom": "Tons violets",
+			"nom": "Violet",
 			"color": "#7C3AED"
 		},
 		{
 			"id": "blanc",
-			"nom": "Tons blancs",
+			"nom": "Blanc",
 			"color": "#FFFFFF"
 		},
 		{
 			"id": "jaune",
-			"nom": "Tons jaunes",
+			"nom": "Jaune",
 			"color": "#FCD34D"
 		},
 		{
 			"id": "vert",
-			"nom": "Tons verts",
+			"nom": "Vert",
 			"color": "#16A34A"
 		}
 	],
