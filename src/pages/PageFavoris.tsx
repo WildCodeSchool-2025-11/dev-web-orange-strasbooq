@@ -8,6 +8,7 @@ interface Bouquet {
 	description: string;
 	prix: number;
 	image_url: string;
+	Color: string[];
 }
 
 function PageFavoris() {
