@@ -2,6 +2,7 @@ import { useState } from "react";
 import Calendar from "react-calendar";
 import "react-calendar/dist/Calendar.css";
 import { Link } from "react-router-dom";
+import data from "../../public/data.json";
 import { useCart } from "../context/CartContext";
 import { useCustomBouquet } from "../context/CustomBouquetContext";
 
@@ -51,6 +52,7 @@ export default function MonPanier() {
 
 	const {
 		cartItems: customBouquetItems,
+		couleur,
 		resetBouquet: clearCustomBouquet,
 		getBouquetTotal: getCustomBouquetTotal,
 	} = useCustomBouquet();
@@ -245,6 +247,23 @@ export default function MonPanier() {
 													€)
 												</p>
 											))}
+
+											{couleur && (
+												<p className="text-sm text-gray-500">
+													• Tonalité{couleur.includes(",") ? "s" : ""} :{" "}
+													{couleur.split(",").map((c, index, array) => {
+														const couleurData = data.couleurs.find(
+															(col) => col.id === c.trim(),
+														);
+														return (
+															<span key={c}>
+																{couleurData?.nom || c}
+																{index < array.length - 1 ? ", " : ""}
+															</span>
+														);
+													})}
+												</p>
+											)}
 										</div>
 										<p className="text-emerald-600 font-bold mt-2">
 											{getCustomBouquetTotal().toFixed(2)} €
