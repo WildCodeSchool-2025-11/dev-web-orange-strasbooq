@@ -2,11 +2,14 @@ import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import data from "../../public/data.json";
 import ItemCard from "../components/ItemCard";
+import { useCart } from "../context/CartContext";
 import { useCustomBouquet } from "../context/CustomBouquetContext";
 
 function ChoisirFleurs() {
 	const [etape, setEtape] = useState(1);
-	const { cartItems, couleur, setCouleur } = useCustomBouquet();
+	const { cartItems, couleur, setCouleur, getBouquetTotal, resetBouquet } =
+		useCustomBouquet();
+	const { addToCart } = useCart();
 	const [couleurChoisie, setCouleurChoisie] = useState<string[]>(
 		couleur && couleur.length > 0 ? couleur.split(",") : [],
 	);
@@ -54,6 +57,36 @@ function ChoisirFleurs() {
 			? couleurChoisie.length > 0
 			: cartItems.filter((item) => item.categorie === categorieActuelle)
 					.length > 0;
+
+	const handleValiderBouquet = () => {
+		const fleursDescription = cartItems
+			.map((item) => `${item.nom} x${item.quantity}`)
+			.join(", ");
+
+		const couleursDescription = couleur
+			.split(",")
+			.map((c) => {
+				const couleurData = data.couleurs.find((col) => col.id === c.trim());
+				return couleurData?.nom || c;
+			})
+			.join(", ");
+
+		const descriptionComplete = `${fleursDescription} | Tonalités: ${couleursDescription}`;
+
+		const bouquetPersonnalise = {
+			id: Date.now(),
+			nom: "Bouquet personnalisé",
+			description: descriptionComplete,
+			prix: getBouquetTotal(),
+			image_url: "/public/bouquetperso.png",
+			quantity: 1,
+		};
+
+		addToCart(bouquetPersonnalise);
+		resetBouquet();
+		navigate("/Panier");
+	};
+
 	return (
 		<div className="min-h-screen p-8 bg-[#FFC7CF]">
 			<div className="max-w-7xl mx-auto">
@@ -67,26 +100,26 @@ function ChoisirFleurs() {
 				</h2>
 
 				{etape === 4 ? (
-					<div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-6 mb-8">
+					<div className="grid grid-cols-2 lg:grid-cols-6 gap-6 mb-8">
 						{data.couleurs.map((couleurs) => (
 							<button
 								key={couleurs.id}
 								type="button"
 								onClick={() => toggleCouleur(couleurs.id)}
-								className={`p-6 rounded-2xl border-4 transition-all ${
+								className={`p-4 rounded-2xl border-4 transition-all ${
 									couleurChoisie.includes(couleurs.id)
 										? "border-[#185227] shadow-lg scale-105"
 										: "border-white hover:border-gray-300"
 								} bg-white cursor-pointer`}
 							>
 								<div
-									className="w-24 h-24 mx-auto mb-4 rounded-full"
+									className="w-20 h-20 mx-auto mb-3 rounded-full"
 									style={{
 										backgroundColor: couleurs.color,
 										border: couleurs.id === "blanc" ? "1px solid #ccc" : "none",
 									}}
 								/>
-								<h3 className="text-lg font-semibold">{couleurs.nom}</h3>
+								<h3 className="text-base font-semibold">{couleurs.nom}</h3>
 							</button>
 						))}
 					</div>
@@ -134,7 +167,7 @@ function ChoisirFleurs() {
 						<button
 							type="button"
 							disabled={!canGoNext}
-							onClick={() => navigate("/Panier")}
+							onClick={handleValiderBouquet}
 							className={`px-8 py-3 text-lg ${
 								canGoNext
 									? "bg-[#185227] hover:bg-green-600 rounded text-white cursor-pointer"
