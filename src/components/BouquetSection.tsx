@@ -15,12 +15,13 @@ import BouquetSaison1 from "../assets/BouquetSaison1.webp";
 import BouquetSaison2 from "../assets/BouquetSaison2.webp";
 import BouquetSaison3 from "../assets/BouquetSaison3.webp";
 import BouquetSaison4 from "../assets/BouquetSaison4.webp";
+import Banderole from "./Banderole";
 
 function BouquetSection() {
 	return (
-		<section className="mt-6 mb-10 px-4 md:px-8 lg:px-16">
+		<section className="mt-4 sm:mt-6 mb-6 sm:mb-10 px-3 sm:px-4 md:px-8 lg:px-16">
 			<div className="text-center mb-8 md:mb-10">
-				<h1 className="text-2xl md:text-4xl">
+				<h1 className="text-xl sm:text-2xl md:text-4xl">
 					Découvrez nos bouquets par thèmes
 				</h1>
 				<p className="mt-4 md:mt-10 text-sm md:text-base">
@@ -31,10 +32,10 @@ function BouquetSection() {
 
 			<div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6">
 				<div className="bg-slate-50 px-4 md:px-10 py-6 md:py-8 rounded-2xl shadow-xl">
-					<h2 className="text-center mb-4 md:mb-6 text-lg md:text-2xl">
+					<h2 className="text-center mb-4 md:mb-6 text-base sm:text-lg md:text-2xl">
 						Les bouquets de saison
 					</h2>
-					<div className="grid grid-cols-2 gap-2 md:gap-4">
+					<div className="grid grid-cols-4 gap-2 md:gap-4">
 						<Link to="/choisir-bouquet">
 							<div className="overflow-hidden rounded-xl">
 								<img
@@ -101,7 +102,7 @@ function BouquetSection() {
 					<h2 className="text-center mb-4 md:mb-6 text-lg md:text-2xl">
 						Les bouquets du jour
 					</h2>
-					<div className="grid grid-cols-2 gap-2 md:gap-4">
+					<div className="grid grid-cols-4 gap-2 md:gap-4">
 						<Link to="/choisir-bouquet">
 							<div className="overflow-hidden rounded-xl">
 								<img
@@ -164,11 +165,13 @@ function BouquetSection() {
 					</div>
 				</div>
 
+				<Banderole className="col-span-1 md:col-span-2" />
+
 				<div className="bg-slate-50 px-4 md:px-10 py-6 md:py-8 rounded-2xl shadow-xl">
 					<h2 className="text-center mb-4 md:mb-6 text-lg md:text-2xl">
 						Vos bouquets personnalisés
 					</h2>
-					<div className="grid grid-cols-2 gap-2 md:gap-4">
+					<div className="grid grid-cols-4 gap-2 md:gap-4">
 						<Link to="/choisir-bouquet">
 							<div className="overflow-hidden rounded-xl">
 								<img
@@ -235,7 +238,7 @@ function BouquetSection() {
 					<h2 className="text-center mb-4 md:mb-6 text-lg md:text-2xl">
 						Les bouquets de Mariage
 					</h2>
-					<div className="grid grid-cols-2 gap-2 md:gap-4">
+					<div className="grid grid-cols-4 gap-2 md:gap-4">
 						<Link to="/choisir-bouquet">
 							<div className="overflow-hidden rounded-xl">
 								<img
