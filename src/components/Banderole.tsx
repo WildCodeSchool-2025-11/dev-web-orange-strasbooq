@@ -22,17 +22,19 @@ function Banderole({ className }: BanderoleProps) {
 	];
 
 	return (
-		<div className={`bg-slate-50 py-8 ${className || ""}`}>
+		<div className={`bg-slate-50 py-6 md:py-8 ${className || ""}`}>
 			<div className="overflow-hidden">
-				<h2 className="text-center text-xl font-bold mb-4">Nos Partenaires</h2>
-				<div className="flex gap-12 animate-scroll">
+				<h2 className="text-center text-xl font-bold mb-3 md:mb-4 px-4">
+					Nos Partenaires
+				</h2>
+				<div className="flex gap-6 sm:gap-8 md:gap-12 animate-scroll">
 					{[...partenaires, ...partenaires, ...partenaires].map(
 						(partenaire, index) => (
 							<img
 								key={index}
 								src={partenaire.logo}
 								alt={`Logo ${partenaire.name}`}
-								className="h-24 w-auto object-contain"
+								className="h-12 sm:h-16 md:h-20 lg:h-24 w-auto object-contain"
 							/>
 						),
 					)}
