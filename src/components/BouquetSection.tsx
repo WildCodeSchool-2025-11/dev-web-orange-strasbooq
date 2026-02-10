@@ -15,6 +15,7 @@ import BouquetSaison1 from "../assets/BouquetSaison1.webp";
 import BouquetSaison2 from "../assets/BouquetSaison2.webp";
 import BouquetSaison3 from "../assets/BouquetSaison3.webp";
 import BouquetSaison4 from "../assets/BouquetSaison4.webp";
+import Banderole from "./Banderole";
 
 function BouquetSection() {
 	return (
@@ -30,11 +31,11 @@ function BouquetSection() {
 			</div>
 
 			<div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6">
-				<div className="bg-slate-50 px-4 md:px-10 py-6 md:py-8 rounded-2xl shadow-xl">
+				<div className="bg-slate-50 px-4 md:px-6 py-6 md:py-5 rounded-2xl shadow-xl">
 					<h2 className="text-center mb-4 md:mb-6 text-lg md:text-2xl">
 						Les bouquets de saison
 					</h2>
-					<div className="grid grid-cols-2 gap-2 md:gap-4">
+					<div className="grid grid-cols-4 gap-2 md:gap-4">
 						<Link to="/choisir-bouquet">
 							<div className="overflow-hidden rounded-xl">
 								<img
@@ -101,7 +102,7 @@ function BouquetSection() {
 					<h2 className="text-center mb-4 md:mb-6 text-lg md:text-2xl">
 						Les bouquets du jour
 					</h2>
-					<div className="grid grid-cols-2 gap-2 md:gap-4">
+					<div className="grid grid-cols-4 gap-2 md:gap-4">
 						<Link to="/choisir-bouquet">
 							<div className="overflow-hidden rounded-xl">
 								<img
@@ -164,11 +165,13 @@ function BouquetSection() {
 					</div>
 				</div>
 
+				<Banderole className="col-span-2" />
+
 				<div className="bg-slate-50 px-4 md:px-10 py-6 md:py-8 rounded-2xl shadow-xl">
 					<h2 className="text-center mb-4 md:mb-6 text-lg md:text-2xl">
 						Vos bouquets personnalisés
 					</h2>
-					<div className="grid grid-cols-2 gap-2 md:gap-4">
+					<div className="grid grid-cols-4 gap-2 md:gap-4">
 						<Link to="/choisir-bouquet">
 							<div className="overflow-hidden rounded-xl">
 								<img
@@ -235,7 +238,7 @@ function BouquetSection() {
 					<h2 className="text-center mb-4 md:mb-6 text-lg md:text-2xl">
 						Les bouquets de Mariage
 					</h2>
-					<div className="grid grid-cols-2 gap-2 md:gap-4">
+					<div className="grid grid-cols-4 gap-2 md:gap-4">
 						<Link to="/choisir-bouquet">
 							<div className="overflow-hidden rounded-xl">
 								<img
