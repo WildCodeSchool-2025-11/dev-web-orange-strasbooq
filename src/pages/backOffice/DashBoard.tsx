@@ -1,5 +1,12 @@
 import { useEffect, useState } from "react";
 
+const RESTRICTED_DATES_KEY = "restricted_dates";
+
+interface RestrictedDate {
+	date: string; // format ISO YYYY-MM-DD
+	type: "closed" | "full";
+}
+
 interface Reservation {
 	id: string;
 	client: { nom: string; prenom: string };
@@ -12,25 +19,59 @@ interface Reservation {
 
 export default function DashBoard() {
 	const [reservations, setReservations] = useState<Reservation[]>([]);
+	const [restrictedDates, setRestrictedDates] = useState<RestrictedDate[]>([]);
+	const [newDate, setNewDate] = useState("");
+	const [newType, setNewType] = useState<"closed" | "full">("closed");
 
 	useEffect(() => {
+		const dataRes = localStorage.getItem("reservations");
+		if (dataRes) {
+			try {
+				const parsedRes = JSON.parse(dataRes);
+				if (Array.isArray(parsedRes)) setReservations(parsedRes);
+			} catch (e) {
+				console.error("Erreur réservations:", e);
+			}
+		}
+		const dataDates = localStorage.getItem(RESTRICTED_DATES_KEY);
+		if (dataDates) {
+			try {
+				const parsedDates = JSON.parse(dataDates);
+				if (Array.isArray(parsedDates)) {
+					setRestrictedDates(parsedDates);
+				}
+			} catch (e) {
+				console.error("Erreur dates restreintes:", e);
+			}
+		}
 		const data = localStorage.getItem("reservations");
+		console.log("Données brutes du localStorage:", data); // AJOUTE CECI
 		if (data) {
 			try {
 				const parsedData = JSON.parse(data);
-				// On vérifie que les données sont bien un tableau
+				console.log("Données parsées:", parsedData); // AJOUTE CECI
 				if (Array.isArray(parsedData)) {
 					setReservations(parsedData);
-				} else {
-					console.error("Les données récupérées ne sont pas un tableau");
-					setReservations([]);
 				}
 			} catch (error) {
-				console.error("Erreur lors de la lecture des réservations :", error);
-				setReservations([]);
+				console.error("Erreur JSON:", error);
 			}
 		}
 	}, []);
+
+	const addRestrictedDate = () => {
+		if (!newDate) return;
+		const updated = [...restrictedDates, { date: newDate, type: newType }];
+		setRestrictedDates(updated);
+		localStorage.setItem(RESTRICTED_DATES_KEY, JSON.stringify(updated));
+		setNewDate("");
+	};
+
+	const removeRestrictedDate = (dateStr: string) => {
+		const updated = restrictedDates.filter((d) => d.date !== dateStr);
+		setRestrictedDates(updated);
+		localStorage.setItem(RESTRICTED_DATES_KEY, JSON.stringify(updated));
+	};
 
 	const deleteReservation = (id: string) => {
 		const updated = reservations.filter((r) => r.id !== id);
@@ -40,6 +81,59 @@ export default function DashBoard() {
 
 	return (
 		<main className="max-w-7xl mx-auto px-4 py-8 bg-gray-50 min-h-screen">
+			<section className="bg-white p-6 rounded-2xl shadow-sm border border-gray-100 mb-8">
+				<h2 className="text-xl font-bold mb-4">
+					Gestion des fermetures et disponibilités
+				</h2>
+				<div className="flex flex-wrap gap-4 items-end mb-6">
+					<div>
+						<label className="block text-sm font-medium mb-1">Date</label>
+						<input
+							type="date"
+							value={newDate}
+							onChange={(e) => setNewDate(e.target.value)}
+							className="border rounded-lg p-2"
+						/>
+					</div>
+					<div>
+						<label className="block text-sm font-medium mb-1">Type</label>
+						<select
+							value={newType}
+							onChange={(e) => setNewType(e.target.value as "closed" | "full")}
+							className="border rounded-lg p-2"
+						>
+							<option value="closed">Fermé</option>
+							<option value="full">Complet</option>
+						</select>
+					</div>
+					<button
+						onClick={addRestrictedDate}
+						className="bg-emerald-500 text-white px-4 py-2 rounded-lg hover:bg-emerald-600"
+					>
+						Ajouter
+					</button>
+				</div>
+
+				<div className="flex flex-wrap gap-2">
+					{restrictedDates.map((d) => (
+						<div
+							key={d.date}
+							className={`flex items-center gap-2 px-3 py-1 rounded-full border ${d.type === "closed" ? "bg-red-100 border-red-200 text-red-800" : "bg-orange-100 border-orange-200 text-orange-800"}`}
+						>
+							<span>
+								{new Date(d.date).toLocaleDateString("fr-FR")} -{" "}
+								{d.type === "closed" ? "Fermé" : "Complet"}
+							</span>
+							<button
+								onClick={() => removeRestrictedDate(d.date)}
+								className="font-bold"
+							>
+								&times;
+							</button>
+						</div>
+					))}
+				</div>
+			</section>
 			<div className="flex justify-between items-center mb-8">
 				<h1 className="text-3xl font-bold text-gray-800">Tableau de Bord</h1>
 				<span className="bg-emerald-100 text-emerald-800 px-4 py-1 rounded-full text-sm font-medium">
