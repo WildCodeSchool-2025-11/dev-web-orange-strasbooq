@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Calendar from "react-calendar";
 import "react-calendar/dist/Calendar.css";
 import { Link } from "react-router-dom";
@@ -9,37 +9,78 @@ import { useCustomBouquet } from "../context/CustomBouquetContext";
 type ValuePiece = Date | null;
 type Value = ValuePiece | [ValuePiece, ValuePiece];
 
-function MinimalReservationDate() {
-	const today = new Date();
-	const reservationDate = new Date();
-
-	if (today.getDay() === 4) {
-		reservationDate.setDate(today.getDate() + 4);
-	} else if (today.getDay() === 5) {
-		reservationDate.setDate(today.getDate() + 4);
-	} else if (today.getDay() === 6) {
-		reservationDate.setDate(today.getDate() + 3);
-	} else {
-		reservationDate.setDate(today.getDate() + 2);
-	}
-	return reservationDate;
-}
-
-const isDateDisabled = ({ date, view }: { date: Date; view: string }) => {
-	if (view === "month") {
-		const weekendDays = [0, 6];
-		const thresholdDate = MinimalReservationDate();
-		return weekendDays.includes(date.getDay()) || date < thresholdDate;
-	}
-	return false;
-};
-
 export default function MonPanier() {
+	const [restrictions, setRestrictions] = useState<
+		{ date: string; type: string }[]
+	>([]);
+
+	useEffect(() => {
+		const saved = localStorage.getItem("restricted_dates");
+		if (saved) setRestrictions(JSON.parse(saved));
+	}, []);
+
+	function MinimalReservationDate() {
+		const today = new Date();
+		const reservationDate = new Date();
+
+		if (today.getDay() === 4) {
+			reservationDate.setDate(today.getDate() + 4);
+		} else if (today.getDay() === 5) {
+			reservationDate.setDate(today.getDate() + 4);
+		} else if (today.getDay() === 6) {
+			reservationDate.setDate(today.getDate() + 3);
+		} else {
+			reservationDate.setDate(today.getDate() + 2);
+		}
+		return reservationDate;
+	}
+
 	const [selectedDate, setSelectedDate] = useState<Value>(
 		MinimalReservationDate(),
 	);
 	const [nom, setNom] = useState("");
 	const [prenom, setPrenom] = useState("");
+
+	const getTileClassName = ({ date, view }: { date: Date; view: string }) => {
+		if (view === "month") {
+			const year = date.getFullYear();
+			const month = String(date.getMonth() + 1).padStart(2, "0");
+			const day = String(date.getDate()).padStart(2, "0");
+			const dateString = `${year}-${month}-${day}`;
+
+			const restriction = restrictions.find((r) => r.date === dateString);
+
+			if (restriction?.type === "closed") return "tile-closed";
+			if (restriction?.type === "full") return "tile-full";
+		}
+		return "";
+	};
+
+	const isDateDisabled = ({ date, view }: { date: Date; view: string }) => {
+		if (view === "month") {
+			const year = date.getFullYear();
+			const month = String(date.getMonth() + 1).padStart(2, "0");
+			const day = String(date.getDate()).padStart(2, "0");
+			const dateString = `${year}-${month}-${day}`;
+
+			const isRestricted = restrictions.some((r) => r.date === dateString);
+
+			const weekendDays = [0, 6];
+			const thresholdDate = MinimalReservationDate();
+
+			const compareDate = new Date(date);
+			compareDate.setHours(0, 0, 0, 0);
+			const compareThreshold = new Date(thresholdDate);
+			compareThreshold.setHours(0, 0, 0, 0);
+
+			return (
+				weekendDays.includes(date.getDay()) ||
+				compareDate < compareThreshold ||
+				isRestricted
+			);
+		}
+		return false;
+	};
 
 	const {
 		cartItems,
@@ -60,7 +101,6 @@ export default function MonPanier() {
 	const isFormValid =
 		nom.trim() !== "" && prenom.trim() !== "" && selectedDate instanceof Date;
 
-	// Empty cart state
 	if (cartItems.length === 0 && customBouquetItems.length === 0) {
 		return (
 			<main className="min-h-[60vh] flex items-center justify-center px-4">
@@ -100,16 +140,28 @@ export default function MonPanier() {
 	const handleReservation = () => {
 		if (!isFormValid) return;
 
+		const tousLesArticles = [...cartItems];
+		if (customBouquetItems.length > 0) {
+			tousLesArticles.push({
+				id: Date.now(),
+				nom: "Bouquet Personnalisé",
+				quantity: 1,
+				prix: getCustomBouquetTotal(),
+				isCustom: true,
+			} as any);
+		}
+
 		const nouvelleCommande = {
 			id: Date.now().toString(),
 			client: { nom, prenom },
 			dateRetrait:
 				selectedDate instanceof Date ? selectedDate.toISOString() : "",
-			articles: cartItems,
-			total: getCartTotal(),
+			articles: tousLesArticles,
+			total: getCartTotal() + getCustomBouquetTotal(),
 			dateCommande: new Date().toISOString(),
 			statut: "En attente",
 		};
+
 		const savedReservations = localStorage.getItem("reservations");
 		let reservationsArray = [];
 
@@ -118,14 +170,16 @@ export default function MonPanier() {
 				const parsed = JSON.parse(savedReservations);
 				reservationsArray = Array.isArray(parsed) ? parsed : [];
 			}
-		} catch (error) {
-			console.error("Erreur de lecture du localStorage", error);
+		} catch (e) {
 			reservationsArray = [];
 		}
 
 		const updatedReservations = [...reservationsArray, nouvelleCommande];
 		localStorage.setItem("reservations", JSON.stringify(updatedReservations));
+
 		clearCart();
+		clearCustomBouquet();
+
 		alert("Votre réservation a été confirmée !");
 	};
 	return (
@@ -352,6 +406,7 @@ export default function MonPanier() {
 									locale="fr-FR"
 									minDate={MinimalReservationDate()}
 									tileDisabled={isDateDisabled}
+									tileClassName={getTileClassName}
 									onChange={setSelectedDate}
 									value={selectedDate}
 									className="border-none! w-full! [&_.react-calendar\_\_tile--active]:bg-emerald-500! [&_.react-calendar\_\_tile--active]:text-white! [&_.react-calendar\_\_tile:hover]:bg-emerald-100!"

@@ -10,6 +10,7 @@ interface Bouquet {
 	prix: number;
 	image_url: string;
 	Color: string[];
+	isCustom?: boolean;
 }
 
 function ChoisirBouquet() {
