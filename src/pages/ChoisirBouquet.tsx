@@ -31,7 +31,7 @@ export default function ChoisirBouquet() {
 
 	// ←––––– NEW ––––––
 	// Liste des IDs désactivés (stockée dans le LS par le Dashboard)
-	const [disabledIds, setDisabledIds] = useState<string[]>(() => {
+	const [disabledIds] = useState<string[]>(() => {
 		try {
 			return JSON.parse(localStorage.getItem("disabled_products") ?? "[]");
 		} catch {
@@ -162,9 +162,8 @@ export default function ChoisirBouquet() {
 			<div className="flex flex-col lg:flex-row gap-6">
 				{/* Sidebar – filtres */}
 				<aside
-					className={`shrink-0 lg:sticky lg:top-24 lg:self-start ${
-						showFilters ? "block" : "hidden"
-					} lg:block`}
+					className={`shrink-0 lg:sticky lg:top-24 lg:self-start ${showFilters ? "block" : "hidden"
+						} lg:block`}
 				>
 					<Filters filters={filters} setFilters={setFilters} />
 				</aside>
