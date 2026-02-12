@@ -12,6 +12,11 @@ interface CartItemProps {
 }
 
 const CartItem = ({ item, removeFromCart, updateQuantity }: CartItemProps) => {
+	const disabledProducts: string[] = JSON.parse(
+		localStorage.getItem("disabled_products") ?? "[]",
+	);
+
+	const isUnavailable = disabledProducts.includes(String(item.id));
 	return (
 		<div className="flex gap-4 p-4 bg-white rounded-lg shadow-md hover:shadow-lg transition-shadow">
 			<img
@@ -39,7 +44,7 @@ const CartItem = ({ item, removeFromCart, updateQuantity }: CartItemProps) => {
 					<button
 						type="button"
 						onClick={() => updateQuantity(item.id, item.quantity - 1)}
-						disabled={item.quantity <= 1}
+						disabled={isUnavailable || item.quantity <= 1}
 						className="w-8 h-8 rounded-full bg-red-200 hover:bg-red-300 disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center font-bold text-gray-700 cursor-pointer"
 					>
 						-
