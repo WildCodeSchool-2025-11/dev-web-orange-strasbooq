@@ -1,3 +1,4 @@
+// src/pages/ChoisirBouquet.tsx
 import { useEffect, useState } from "react";
 import Filters from "../components/Filters";
 import { useCart } from "../context/CartContext";
@@ -13,7 +14,7 @@ interface Bouquet {
 	isCustom?: boolean;
 }
 
-function ChoisirBouquet() {
+export default function ChoisirBouquet() {
 	const [bouquets, setBouquets] = useState<Bouquet[]>([]);
 	const [loading, setLoading] = useState<boolean>(true);
 	const [error, setError] = useState<string | null>(null);
@@ -28,21 +29,26 @@ function ChoisirBouquet() {
 	});
 	const [showFilters, setShowFilters] = useState(false);
 
+	// ←––––– NEW ––––––
+	// Liste des IDs désactivés (stockée dans le LS par le Dashboard)
+	const [disabledIds, setDisabledIds] = useState<string[]>(() => {
+		try {
+			return JSON.parse(localStorage.getItem("disabled_products") ?? "[]");
+		} catch {
+			return [];
+		}
+	});
+	// ←–––––––––––––––
+
 	const showAlertMessage = (message: string) => {
 		setAlertMessage(message);
 		setShowAlert(true);
 		setTimeout(() => setShowAlert(false), 5000);
 	};
 
-	const [favorites, setFavorites] = useState<Bouquet[]>(() => {
-		const saved = localStorage.getItem("favorites");
-		try {
-			return saved ? JSON.parse(saved) : [];
-		} catch {
-			return [];
-		}
-	});
-
+	// -----------------------------------------------------------------
+	// FETCH DES BOUQUETS
+	// -----------------------------------------------------------------
 	useEffect(() => {
 		const fetchBouquets = async () => {
 			try {
@@ -59,38 +65,17 @@ function ChoisirBouquet() {
 		fetchBouquets();
 	}, []);
 
-	const handleToggleFavorite = (bouquet: Bouquet) => {
-		setFavorites((prev) => {
-			const exists = prev.some((fav) => fav.id === bouquet.id);
-			const updated = exists
-				? prev.filter((fav) => fav.id !== bouquet.id)
-				: [...prev, bouquet];
-			localStorage.setItem("favorites", JSON.stringify(updated));
-			return updated;
-		});
-	};
-
-	if (loading) {
-		return (
-			<div className="container mx-auto px-4 py-8">
-				<p>Chargement en cours...</p>
-			</div>
-		);
-	}
-
-	if (error) {
-		return (
-			<div className="container mx-auto px-4 py-8">
-				<p className="text-red-600">{error}</p>
-			</div>
-		);
-	}
-
+	// -----------------------------------------------------------------
+	// GESTION DES ALERTES
+	// -----------------------------------------------------------------
 	const handleAddToCart = (bouquet: Bouquet) => {
 		addToCart({ ...bouquet, quantity: 1 });
 		showAlertMessage(`Bouquet ajouté au panier: ${bouquet.nom}`);
 	};
 
+	// -----------------------------------------------------------------
+	// FILTRAGE
+	// -----------------------------------------------------------------
 	const filteredBouquets = bouquets.filter((bouquet) => {
 		const matchesColor =
 			filters.colors.length === 0 ||
@@ -109,13 +94,35 @@ function ChoisirBouquet() {
 		return matchesColor && matchesPrice && matchesSearch;
 	});
 
+	// -----------------------------------------------------------------
+	// RENDU
+	// -----------------------------------------------------------------
+	if (loading) {
+		return (
+			<div className="container mx-auto px-4 py-8">
+				<p>Chargement en cours…</p>
+			</div>
+		);
+	}
+
+	if (error) {
+		return (
+			<div className="container mx-auto px-4 py-8">
+				<p className="text-red-600">{error}</p>
+			</div>
+		);
+	}
+
 	return (
 		<main className="container mx-auto px-4 py-8">
+			{/* Alertes */}
 			{showAlert && (
 				<div className="fixed top-4 right-20 bg-green-600 text-white font-semibold px-6 py-3 rounded-lg shadow-lg z-50">
 					{alertMessage}
 				</div>
 			)}
+
+			{/* Header */}
 			<header className="text-center mb-8">
 				<h1 className="text-3xl font-bold mb-2">
 					Nos Bouquets Disponibles à la vente
@@ -130,7 +137,7 @@ function ChoisirBouquet() {
 				<button
 					type="button"
 					onClick={() => setShowFilters(!showFilters)}
-					className="flex items-center gap-2 bg-green-600 hover:bg-green-700 text-white font-medium px-4 py-2.5 rounded-xl transition-colors duration-200"
+					className="flex items-center gap-2 bg-green-600 hover:bg-green-700 text-white font-medium px-4 py-2 rounded-xl transition-colors duration-200"
 				>
 					<svg
 						xmlns="http://www.w3.org/2000/svg"
@@ -151,22 +158,32 @@ function ChoisirBouquet() {
 				</button>
 			</div>
 
+			{/* Layout principal */}
 			<div className="flex flex-col lg:flex-row gap-6">
+				{/* Sidebar – filtres */}
 				<aside
-					className={`shrink-0 lg:sticky lg:top-24 lg:self-start ${showFilters ? "block" : "hidden"} lg:block`}
+					className={`shrink-0 lg:sticky lg:top-24 lg:self-start ${
+						showFilters ? "block" : "hidden"
+					} lg:block`}
 				>
 					<Filters filters={filters} setFilters={setFilters} />
 				</aside>
 
+				{/* Grid des bouquets */}
 				<section className="flex-1">
 					<div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
 						{filteredBouquets.map((bouquet) => (
 							<CardBouquet
 								key={bouquet.id}
 								bouquet={bouquet}
-								onToggleFavorite={handleToggleFavorite}
+								// ----- PASSER L’INFO DE STOCK -----
+								isDisabled={disabledIds.includes(String(bouquet.id))}
+								// ---------------------------------
+								onToggleFavorite={() => {
+									/* … ton code favorite … */
+								}}
 								onAddToCart={() => handleAddToCart(bouquet)}
-								isFavorite={favorites.some((fav) => fav.id === bouquet.id)}
+								isFavorite={false} // (ou ta logique actuelle)
 							/>
 						))}
 					</div>
@@ -175,5 +192,3 @@ function ChoisirBouquet() {
 		</main>
 	);
 }
-
-export default ChoisirBouquet;

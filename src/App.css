@@ -11,6 +11,7 @@
 	0% {
 		transform: translateX(0);
 	}
+
 	100% {
 		transform: translateX(-33.333%);
 	}
@@ -24,4 +25,24 @@
 
 .animate-scroll:hover {
 	animation-play-state: paused;
+}
+
+/* Jour Fermé - Rouge Bordeaux */
+.tile-closed {
+	background: #800020 !important;
+	color: white !important;
+	text-decoration: line-through;
+}
+
+/* Jour Complet - Orange */
+.tile-full {
+	background: #ff8c00 !important;
+	color: white !important;
+}
+
+/* Optionnel : rendre les jours désactivés plus explicites */
+.react-calendar__tile:disabled {
+	cursor: not-allowed;
+	filter: grayscale(0.5);
+	opacity: 0.6;
 }
